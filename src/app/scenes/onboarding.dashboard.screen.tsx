@@ -18,7 +18,8 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
         showHideTransition="fade"
         barStyle="dark-content"
         backgroundColor="transparent"
-      />
+      /> 
+      <Text>test</Text>
     </Fragment>
   );
 };

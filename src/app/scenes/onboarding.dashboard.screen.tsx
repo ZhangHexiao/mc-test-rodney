@@ -19,11 +19,14 @@ import {images, icons} from '../constants/index';
 import {Button} from '../../atomic/atoms/button/button.component';
 import {InputLabel} from '../../atomic/atoms/button/inputLabel.component';
 import {Input} from '../../atomic/atoms/button/input.component';
+import LinearGradient from 'react-native-linear-gradient';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
 const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
   const [connectModalVisible, setConnectModalVisible] = useState(false);
+  const [connectSuccessModalVisible, setConnectSuccessModalVisible] =
+    useState(false);
   const inputChangedHandler = useCallback(
     (inputId: string, inputValue: string) => {},
     [],
@@ -36,65 +39,43 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
         animationType="slide"
         transparent={true}
         visible={connectModalVisible}>
-        <TouchableWithoutFeedback>
-          <View style={styles.modalContainer}>
-            <View
-              style={{...styles.modal, borderTopColor: COLORS.sportifyGreen}}>
-              <TouchableOpacity
-                style={styles.closeIconStyle}
-                onPress={() => {
-                  setConnectModalVisible(false);
-                }}>
-                <Image source={icons.closeMark} resizeMode="contain"></Image>
-              </TouchableOpacity>
-              <Image
-                source={images.spotify}
-                resizeMode="contain"
-                style={styles.modalImage}
+        <View style={styles.modalContainer}>
+          <View
+            style={{
+              ...styles.modal,
+              borderTopWidth: 8,
+              borderTopColor: COLORS.sportifyGreen,
+            }}>
+            <TouchableOpacity
+              style={styles.closeIconStyle}
+              onPress={() => {
+                setConnectModalVisible(false);
+              }}>
+              <Image source={icons.closeMark} resizeMode="contain"></Image>
+            </TouchableOpacity>
+            <Image
+              source={images.spotify}
+              resizeMode="contain"
+              style={styles.modalImage}
+            />
+            <Text style={styles.title}>Connect Spotify</Text>
+            <View style={{margin: 16}}>
+              <InputLabel title="User Name" />
+              <Input
+                id="userName"
+                onInputChanged={inputChangedHandler}
+                placeholder="user@gmail.com"
+                placeholderTextColor={COLORS.black}
               />
-              <Text style={styles.title}>Connect Spotify</Text>
-              <View style={{margin: 16}}>
-                <InputLabel title="User Name" />
-                <Input
-                  id="userName"
-                  onInputChanged={inputChangedHandler}
-                  placeholder="user@gmail.com"
-                  placeholderTextColor={COLORS.black}
-                />
-                <InputLabel title="Password" />
-                <Input
-                  id="userPassword"
-                  onInputChanged={inputChangedHandler}
-                  placeholder="••••••••••"
-                  placeholderTextColor={COLORS.black}
-                  secureTextEntry
-                />
-              </View>
-
-              <Button
-                title="Connect"
-                filled
-                onPress={() => {
-                  setConnectModalVisible(false);
-                }}
-                backgroundColor={COLORS.black}
-                style={styles.modalBtn}
+              <InputLabel title="Password" />
+              <Input
+                id="userPassword"
+                onInputChanged={inputChangedHandler}
+                placeholder="••••••••••"
+                placeholderTextColor={COLORS.black}
+                secureTextEntry
               />
             </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
-    );
-  };
-
-  const connectSuccessModal = () => {
-    return (
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={connectModalVisible}>
-        <TouchableWithoutFeedback>
-          <View style={styles.modalContainer}>
             <Button
               title="Connect"
               filled
@@ -105,7 +86,45 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
               style={styles.modalBtn}
             />
           </View>
-        </TouchableWithoutFeedback>
+        </View>
+      </Modal>
+    );
+  };
+
+  const connectSuccessModal = () => {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={connectSuccessModalVisible}>
+        <View style={styles.modalContainer}>
+          <View style={{...styles.modalSuccess}}>
+            <LinearGradient
+              colors={['#E35205', '#F98E20']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              style={styles.sucessCircleContainer}>
+              <Image source={icons.successCircle} resizeMode="contain"></Image>
+            </LinearGradient>
+            <View style={{paddingTop: 24}}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.successTitle}>All Set</Text>
+              </View>
+              <View style={styles.subTitleContainer}>
+                <Text style={styles.subTitle}>Enjoy your digital journey</Text>
+              </View>
+            </View>
+
+            <Button
+              title="View Dashboard"
+              filled
+              onPress={() => {
+                setConnectSuccessModalVisible(false);
+              }}
+              style={styles.modalSuccessBtn}
+            />
+          </View>
+        </View>
       </Modal>
     );
   };
@@ -139,7 +158,13 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
               source={images.netflix}
               resizeMode="contain"></Image>
           </View>
-          <Button title="Connect" small onPress={() => {}} />
+          <Button
+            title="Connect"
+            small
+            onPress={() => {
+              setConnectSuccessModalVisible(true);
+            }}
+          />
         </View>
         <View style={{...styles.providerBox, ...styles.providerBoxBorder}}>
           <View style={styles.imageContainer}>
@@ -185,6 +210,8 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
           style={{marginVertical: 8}}
           title="Continue"
           filled
+          disable
+          backgroundColor={COLORS.disalbeGray}
           onPress={() => {}}
         />
         <Button
@@ -298,7 +325,7 @@ const styles = StyleSheet.create({
     right: 16,
     left: 16,
   },
-
+  // ==================
   modalContainer: {
     flex: 1,
     alignItems: 'center',
@@ -306,24 +333,56 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
   modal: {
-    height: 494,
+    height: 526,
     width: SIZES.width * 0.9,
     backgroundColor: COLORS.white,
-    // borderRadius: 12,
     alignItems: 'center',
     padding: 16,
-    borderTopWidth: 8,
   },
   modalBtn: {
     width: '100%',
-    marginTop: 12,
     backgroundColor: COLORS.black,
+    position: 'absolute',
+    bottom: 24,
   },
   modalImage: {
     height: SIZES.width * 0.2,
     width: SIZES.width * 0.2,
     marginVertical: 22,
     borderRadius: (SIZES.width * 0.2) / 2,
+  },
+
+  // ==================
+  successTitle: {
+    ...FONTS.h1,
+    color: COLORS.black,
+    textAlign: 'center',
+  },
+  modalSuccess: {
+    height: 388,
+    width: SIZES.width * 0.8,
+    backgroundColor: COLORS.white,
+    borderRadius: 12,
+    alignItems: 'center',
+    padding: 16,
+  },
+  modalSuccessBtn: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 24,
+  },
+  sucessCircleContainer: {
+    height: 80,
+    width: 80,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    borderColor: COLORS.white,
+    borderWidth: 8,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: -40,
   },
 });
 

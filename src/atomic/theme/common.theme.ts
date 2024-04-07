@@ -9,6 +9,7 @@ export const COLORS = {
   black: '#333333',
   white: '#FFFFFE',
   gray: '#dcdee0',
+  disalbeGray: '#D6D6D6',
   sportifyGreen: '#1DB954',
   secondaryBlack: '#020614',
   // tertiary: '#D6CDFE',
@@ -34,7 +35,7 @@ export const SIZES = {
 
   // FONTS Sizes
   // largeTitle: 50,
-  // h1: 36,
+  h1: 26,
   h2: 22,
   h3: 16,
   // h4: 14,
@@ -49,7 +50,7 @@ export const SIZES = {
 
 export const FONTS = {
   // largeTitle: {fontFamily: 'black', fontSize: SIZES.largeTitle, lineHeight: 55},
-  // h1: {fontFamily: 'bold', fontSize: SIZES.h1, lineHeight: 36},
+  h1: {fontFamily: 'bold', fontSize: SIZES.h1, lineHeight: 32},
   h2: {fontFamily: 'bold', fontSize: SIZES.h2, lineHeight: 28},
   h3: {fontFamily: 'bold', fontSize: SIZES.h3, lineHeight: 20},
   // h4: {fontFamily: 'bold', fontSize: SIZES.h4, lineHeight: 20},

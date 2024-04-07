@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import {COLORS, FONTS, SIZES} from '../../theme/common.theme';
+import {COLORS, FONTS} from '../../theme/common.theme';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const Button = (props: any) => {
@@ -18,19 +18,23 @@ export const Button = (props: any) => {
   const isLoading = props.isLoading || false;
   const isSmallSize = props.small || false;
   const isFilled = props.filled || false;
+  const isDiabled = props.disable || false;
   return (
     <LinearGradient
       colors={isFilled ? backgroundColor : [COLORS.white, COLORS.white]}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 0}}
       style={{
-        ...styles.btn,
+        ...styles.btnContainer,
         ...props.style,
         borderWidth: isFilled ? 0 : 2,
         height: isSmallSize ? 38 : 48,
         width: isSmallSize ? '70%' : '90%',
       }}>
-      <TouchableOpacity onPress={props.onPress}>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={props.onPress}
+        disabled={isDiabled}>
         {isLoading && isLoading == true ? (
           <ActivityIndicator size="small" color={COLORS.white} />
         ) : (
@@ -44,11 +48,13 @@ export const Button = (props: any) => {
 };
 const styles = StyleSheet.create({
   btn: {
-    paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.padding,
-    borderColor: COLORS.primary,
-    borderRadius: 8,
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  btnContainer: {
+    borderColor: COLORS.primary,
+    borderRadius: 4,
   },
 });

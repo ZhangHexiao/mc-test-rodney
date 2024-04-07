@@ -12,18 +12,21 @@ export const Button = (props: any) => {
   const textColor = props.filled
     ? COLORS.white || props.textColor
     : props.textColor || COLORS.primary;
+  const backgroundColor = props.backgroundColor
+    ? [props.backgroundColor, props.backgroundColor]
+    : ['#E35205', '#F98E20'];
   const isLoading = props.isLoading || false;
   const isSmallSize = props.small || false;
   const isFilled = props.filled || false;
   return (
     <LinearGradient
-      colors={isFilled ? ['#E35205', '#F98E20'] : [COLORS.white, COLORS.white]}
+      colors={isFilled ? backgroundColor : [COLORS.white, COLORS.white]}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 0}}
       style={{
         ...styles.btn,
-        borderWidth: isFilled ? 0 : 2,
         ...props.style,
+        borderWidth: isFilled ? 0 : 2,
         height: isSmallSize ? 38 : 48,
         width: isSmallSize ? '70%' : '90%',
       }}>

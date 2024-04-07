@@ -1,4 +1,4 @@
-import React, {FC, Fragment} from 'react';
+import React, {FC, Fragment, useCallback, useReducer, useState} from 'react';
 import {
   StatusBar,
   Text,
@@ -6,19 +6,110 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
+  Modal,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
 
 import {StackScreenProps} from '@react-navigation/stack';
 import {useTheme} from 'styled-components/native';
 import {DashboardRoutes} from './dashboard.stack';
 import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
-import {images} from '../constants/index';
+import {images, icons} from '../constants/index';
 import {Button} from '../../atomic/atoms/button/button.component';
+import {InputLabel} from '../../atomic/atoms/button/inputLabel.component';
+import {Input} from '../../atomic/atoms/button/input.component';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
 const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
+  const [connectModalVisible, setConnectModalVisible] = useState(false);
+  const inputChangedHandler = useCallback(
+    (inputId: string, inputValue: string) => {},
+    [],
+  );
+
   const theme = useTheme();
+  const connectProviderModal = () => {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={connectModalVisible}>
+        <TouchableWithoutFeedback>
+          <View style={styles.modalContainer}>
+            <View
+              style={{...styles.modal, borderTopColor: COLORS.sportifyGreen}}>
+              <TouchableOpacity
+                style={styles.closeIconStyle}
+                onPress={() => {
+                  setConnectModalVisible(false);
+                }}>
+                <Image source={icons.closeMark} resizeMode="contain"></Image>
+              </TouchableOpacity>
+              <Image
+                source={images.spotify}
+                resizeMode="contain"
+                style={styles.modalImage}
+              />
+              <Text style={styles.title}>Connect Spotify</Text>
+              <View style={{margin: 16}}>
+                <InputLabel title="User Name" />
+                <Input
+                  id="userName"
+                  onInputChanged={inputChangedHandler}
+                  placeholder="user@gmail.com"
+                  placeholderTextColor={COLORS.black}
+                />
+                <InputLabel title="Password" />
+                <Input
+                  id="userPassword"
+                  onInputChanged={inputChangedHandler}
+                  placeholder="••••••••••"
+                  placeholderTextColor={COLORS.black}
+                  secureTextEntry
+                />
+              </View>
+
+              <Button
+                title="Connect"
+                filled
+                onPress={() => {
+                  setConnectModalVisible(false);
+                }}
+                backgroundColor={COLORS.black}
+                style={styles.modalBtn}
+              />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    );
+  };
+
+  const connectSuccessModal = () => {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={connectModalVisible}>
+        <TouchableWithoutFeedback>
+          <View style={styles.modalContainer}>
+            <Button
+              title="Connect"
+              filled
+              onPress={() => {
+                setConnectModalVisible(false);
+              }}
+              backgroundColor={COLORS.black}
+              style={styles.modalBtn}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -41,7 +132,7 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
       </View>
 
       <View style={styles.providerContainer}>
-        <View style={styles.providerBox}>
+        <View style={{...styles.providerBox, ...styles.providerBoxShadow}}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.imageStyle}
@@ -50,16 +141,27 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
           </View>
           <Button title="Connect" small onPress={() => {}} />
         </View>
-        <View style={styles.providerBox}>
+        <View style={{...styles.providerBox, ...styles.providerBoxBorder}}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.imageStyle}
               source={images.spotify}
               resizeMode="contain"></Image>
           </View>
-          <Button title="Connect" small filled onPress={() => {}} />
+          <Image
+            style={styles.checkIconStyle}
+            source={icons.checkMark}
+            resizeMode="contain"></Image>
+          <Button
+            title="Connect"
+            small
+            filled
+            onPress={() => {
+              setConnectModalVisible(true);
+            }}
+          />
         </View>
-        <View style={styles.providerBox}>
+        <View style={{...styles.providerBox, ...styles.providerBoxShadow}}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.imageStyle}
@@ -68,7 +170,7 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
           </View>
           <Button title="Connect" small onPress={() => {}} />
         </View>
-        <View style={styles.providerBox}>
+        <View style={{...styles.providerBox, ...styles.providerBoxShadow}}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.imageStyle}
@@ -82,15 +184,17 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
         <Button
           style={{marginVertical: 8}}
           title="Continue"
+          filled
           onPress={() => {}}
         />
         <Button
           style={{marginVertical: 8}}
           title="Skip for now"
-          filled
           onPress={() => {}}
         />
       </View>
+      {connectProviderModal()}
+      {connectSuccessModal()}
     </SafeAreaView>
   );
 };
@@ -138,12 +242,21 @@ const styles = StyleSheet.create({
     margin: 8,
     paddingVertical: 16,
     width: (SIZES.width - 24) / 2 - 16,
+  },
+
+  providerBoxShadow: {
     shadowOffset: {width: 2, height: 2},
     shadowOpacity: 0.3,
     shadowRadius: 2.5,
     borderWidth: 0.5,
     borderRadius: 8,
     borderColor: COLORS.gray,
+  },
+
+  providerBoxBorder: {
+    borderWidth: 3,
+    borderRadius: 8,
+    borderColor: COLORS.primary,
   },
 
   imageContainer: {
@@ -159,6 +272,24 @@ const styles = StyleSheet.create({
     borderRadius: (SIZES.width - 24) / 2,
   },
 
+  checkIconStyle: {
+    width: 20,
+    height: 20,
+    aspectRatio: 1,
+    position: 'absolute',
+    top: 5,
+    right: 5,
+  },
+
+  closeIconStyle: {
+    width: 10,
+    height: 10,
+    aspectRatio: 1,
+    position: 'absolute',
+    top: 10,
+    right: 10,
+  },
+
   footer: {
     width: '100%',
     marginVertical: 12,
@@ -166,6 +297,33 @@ const styles = StyleSheet.create({
     bottom: 22,
     right: 16,
     left: 16,
+  },
+
+  modalContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+  modal: {
+    height: 494,
+    width: SIZES.width * 0.9,
+    backgroundColor: COLORS.white,
+    // borderRadius: 12,
+    alignItems: 'center',
+    padding: 16,
+    borderTopWidth: 8,
+  },
+  modalBtn: {
+    width: '100%',
+    marginTop: 12,
+    backgroundColor: COLORS.black,
+  },
+  modalImage: {
+    height: SIZES.width * 0.2,
+    width: SIZES.width * 0.2,
+    marginVertical: 22,
+    borderRadius: (SIZES.width * 0.2) / 2,
   },
 });
 

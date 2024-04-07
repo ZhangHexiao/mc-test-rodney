@@ -9,7 +9,8 @@ export const COLORS = {
   black: '#333333',
   white: '#FFFFFE',
   gray: '#dcdee0',
-  // secondaryBlack: '#020614',
+  sportifyGreen: '#1DB954',
+  secondaryBlack: '#020614',
   // tertiary: '#D6CDFE',
   // blue: '#150B3D',
 

@@ -14,7 +14,7 @@ export const Button = (props: any) => {
     : props.textColor || COLORS.primary;
   const backgroundColor = props.backgroundColor
     ? [props.backgroundColor, props.backgroundColor]
-    : ['#E35205', '#F98E20'];
+    : [COLORS.primary, COLORS.secondary];
   const isLoading = props.isLoading || false;
   const isSmallSize = props.small || false;
   const isFilled = props.filled || false;

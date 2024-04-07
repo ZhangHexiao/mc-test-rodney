@@ -17,7 +17,7 @@ import {DashboardRoutes} from './dashboard.stack';
 import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
 import {images, icons} from '../constants/index';
 import {Button} from '../../atomic/atoms/button/button.component';
-import {InputLabel} from '../../atomic/atoms/button/inputLabel.component';
+import {InputLabel} from '../../atomic/atoms/button/input.label.component';
 import {Input} from '../../atomic/atoms/button/input.component';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -44,7 +44,7 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
             style={{
               ...styles.modal,
               borderTopWidth: 8,
-              borderTopColor: COLORS.sportifyGreen,
+              borderTopColor: theme.COLORS.sportifyGreen,
             }}>
             <TouchableOpacity
               style={styles.closeIconStyle}
@@ -65,14 +65,14 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
                 id="userName"
                 onInputChanged={inputChangedHandler}
                 placeholder="user@gmail.com"
-                placeholderTextColor={COLORS.black}
+                placeholderTextColor={theme.COLORS.black}
               />
               <InputLabel title="Password" />
               <Input
                 id="userPassword"
                 onInputChanged={inputChangedHandler}
                 placeholder="••••••••••"
-                placeholderTextColor={COLORS.black}
+                placeholderTextColor={theme.COLORS.black}
                 secureTextEntry
               />
             </View>
@@ -82,7 +82,7 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
               onPress={() => {
                 setConnectModalVisible(false);
               }}
-              backgroundColor={COLORS.black}
+              backgroundColor={theme.COLORS.black}
               style={styles.modalBtn}
             />
           </View>
@@ -108,7 +108,7 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
             </LinearGradient>
             <View style={{paddingTop: 24}}>
               <View style={styles.titleContainer}>
-                <Text style={styles.successTitle}>All Set</Text>
+                <Text style={styles.successTitle}>All Set!</Text>
               </View>
               <View style={styles.subTitleContainer}>
                 <Text style={styles.subTitle}>Enjoy your digital journey</Text>
@@ -211,7 +211,7 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
           title="Continue"
           filled
           disable
-          backgroundColor={COLORS.disalbeGray}
+          backgroundColor={theme.COLORS.disalbeGray}
           onPress={() => {}}
         />
         <Button
@@ -241,6 +241,7 @@ const styles = StyleSheet.create({
 
   title: {
     ...FONTS.h2,
+    fontWeight: '500',
     color: COLORS.black,
     textAlign: 'center',
   },

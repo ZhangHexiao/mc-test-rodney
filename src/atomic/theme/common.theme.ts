@@ -5,7 +5,7 @@ const {height, width} = Dimensions.get('window');
 
 export const COLORS = {
   primary: '#E35205',
-  secondary: '#0F265C',
+  secondary: '#F98E20',
   black: '#333333',
   white: '#FFFFFE',
   gray: '#dcdee0',
@@ -48,11 +48,16 @@ export const SIZES = {
   height,
 };
 
+// color: '#fff',
+//     fontSize: 18,
+//     fontWeight: '600',
+
 export const FONTS = {
   // largeTitle: {fontFamily: 'black', fontSize: SIZES.largeTitle, lineHeight: 55},
-  h1: {fontFamily: 'bold', fontSize: SIZES.h1, lineHeight: 32},
-  h2: {fontFamily: 'bold', fontSize: SIZES.h2, lineHeight: 28},
-  h3: {fontFamily: 'bold', fontSize: SIZES.h3, lineHeight: 20},
+  h1: {fontSize: SIZES.h1, lineHeight: 32},
+  h2: {fontSize: SIZES.h2, lineHeight: 28},
+  h3: {fontSize: SIZES.h3, lineHeight: 20},
+  header: {fontSize: SIZES.h3, lineHeight: 20},
   // h4: {fontFamily: 'bold', fontSize: SIZES.h4, lineHeight: 20},
   // body1: {fontFamily: 'regular', fontSize: SIZES.body1, lineHeight: 36},
   // body2: {fontFamily: 'regular', fontSize: SIZES.body2, lineHeight: 30},

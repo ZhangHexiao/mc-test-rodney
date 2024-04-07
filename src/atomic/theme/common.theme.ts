@@ -9,6 +9,7 @@ export const COLORS = {
   black: '#333333',
   white: '#FFFFFE',
   gray: '#dcdee0',
+  notSelectedGray: '#ADADAD',
   disalbeGray: '#D6D6D6',
   sportifyGreen: '#1DB954',
   secondaryBlack: '#020614',

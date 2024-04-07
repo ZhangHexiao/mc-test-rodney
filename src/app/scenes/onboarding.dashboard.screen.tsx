@@ -217,7 +217,9 @@ const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
         <Button
           style={{marginVertical: 8}}
           title="Skip for now"
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('RootTabs');
+          }}
         />
       </View>
       {connectProviderModal()}

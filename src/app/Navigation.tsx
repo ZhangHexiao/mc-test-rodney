@@ -4,9 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {DashboardStack} from './scenes/dashboard.stack';
+import {RootTabs} from './scenes/tabs/tabs.stack';
 
 export type RootRoutes = {
   Dashboard: undefined;
+  RootTabs: undefined;
 };
 
 const Stack = createStackNavigator<RootRoutes>();
@@ -22,6 +24,13 @@ function Navigation(): ReactElement {
         <Stack.Screen
           name="Dashboard"
           component={DashboardStack}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="RootTabs"
+          component={RootTabs}
           options={{
             headerShown: false,
           }}

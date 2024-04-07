@@ -1,13 +1,8 @@
-const netflix = require('../assets/images/netflix.png') as string;
-const spotify = require('../assets/images/spotify.png') as string;
-const starbucks = require('../assets/images/starbucks.png') as string;
-const uberEats = require('../assets/images/uber_eats.png') as string;
-
-const images = {
-  netflix,
-  spotify,
-  starbucks,
-  uberEats,
+const Images = {
+  netflix: require('../../assets/images/netflix.png'),
+  spotify: require('../../assets/images/spotify.png'),
+  starbucks: require('../../assets/images/starbucks.png'),
+  uberEats: require('../../assets/images/uber_eats.png'),
 };
 
-export default images;
+export default Images;

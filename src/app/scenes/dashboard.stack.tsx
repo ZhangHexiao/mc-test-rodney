@@ -20,7 +20,7 @@ export const DashboardStack = () => {
         name="DashboardOnboarding"
         component={OnboardingDashboardScreen}
         options={{
-          headerTitle: 'Onboardingds',
+          headerTitle: 'Onboarding',
         }}
       />
     </Stack.Navigator>

@@ -4,8 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
 import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/core';
-
-const {height: D_HEIGHT, width: D_WIDTH} = Dimensions.get('window');
+import HomeTabScreen from './home.tab.screen';
 
 export const RootTabs = () => {
   type RootStackParamList = {
@@ -54,8 +53,7 @@ export const RootTabs = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={PlaceholderTabScreen}
-        initialParams={{title: 'Home'}}
+        component={HomeTabScreen}
         options={{
           title: '',
           tabBarIcon: ({focused}: {focused: boolean}) => {

@@ -75,6 +75,30 @@ const HomeTabScreen = ({}) => {
             source={images.appleWallet}
             resizeMode="contain"></Image>
         </View>
+        <View style={styles.cardDetailContainer}>
+          <Text style={styles.cardNumberTitle}>Card Number</Text>
+          <Text style={styles.cardNumberStyle}>5426123456781234</Text>
+        </View>
+        <View style={styles.cardInfoContainer}>
+          <View style={{flex: 2, paddingLeft: 48}}>
+            <Text style={styles.cardNumberTitle}>Expiration Date</Text>
+            <Text style={styles.cardNumberStyle}>09/25</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              paddingRight: 48,
+              borderColor: COLORS.gray,
+              borderLeftWidth: 1.5,
+            }}>
+            <Text style={styles.cardNumberTitle}>CVC</Text>
+            <Text style={styles.cardNumberStyle}>242</Text>
+          </View>
+        </View>
+        <Button
+          style={{marginVertical: 24}}
+          title="Copy Card Number"
+          onPress={() => {}}></Button>
       </View>
     </SafeAreaView>
   );
@@ -88,7 +112,7 @@ const styles = StyleSheet.create({
   },
 
   cardListContainer: {
-    height: 240,
+    height: 250,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -102,6 +126,32 @@ const styles = StyleSheet.create({
 
   walletStyle: {
     height: '100%',
+  },
+
+  cardDetailContainer: {
+    width: 0.9 * SIZES.width,
+    marginVertical: 32,
+    paddingBottom: 24,
+    borderBottomWidth: 1.5,
+    borderBottomColor: COLORS.gray,
+  },
+
+  cardNumberTitle: {
+    ...FONTS.h3,
+    color: COLORS.primary,
+    textAlign: 'center',
+  },
+
+  cardNumberStyle: {
+    paddingTop: 8,
+    ...FONTS.h2,
+    color: COLORS.black,
+    textAlign: 'center',
+    fontWeight: '600',
+  },
+
+  cardInfoContainer: {
+    flexDirection: 'row',
   },
 });
 

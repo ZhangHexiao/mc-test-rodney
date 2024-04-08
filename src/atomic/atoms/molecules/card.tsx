@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
   subTitleContainer: {
     marginHorizontal: 48,
-    marginVertical: 18,
+    marginVertical: 24,
     alignItems: 'center',
   },
 
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     ...FONTS.h3,
     color: COLORS.black,
     textAlign: 'center',
+    fontWeight: '500',
   },
 
   cardStyle: {

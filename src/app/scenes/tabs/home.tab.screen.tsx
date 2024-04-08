@@ -24,6 +24,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Card from '../../../atomic/atoms/molecules/card';
 import babelConfig from 'babel.config';
 import {blue} from 'react-native-reanimated';
+import CarOperationModal from './card.operation.modal';
+import {ScrollView} from 'react-native-gesture-handler';
 
 //navigation-- add in to {} for doing navigation to card controles
 const HomeTabScreen = ({}) => {
@@ -46,6 +48,7 @@ const HomeTabScreen = ({}) => {
         barStyle="dark-content"
         backgroundColor="transparent"
       />
+
       <View style={{alignItems: 'center'}}>
         <View style={styles.cardListContainer}>
           <FlatList
@@ -57,6 +60,7 @@ const HomeTabScreen = ({}) => {
               left: (SIZES.width - 260) / 2 + 6,
               right: (SIZES.width - 260) / 2 + 6,
             }}
+            contentOffset={{x: -(SIZES.width - 260) / 2, y: 0}}
             snapToInterval={260}
             decelerationRate="fast"
             showsHorizontalScrollIndicator={false}
@@ -69,6 +73,7 @@ const HomeTabScreen = ({}) => {
             )}
           />
         </View>
+
         <View style={styles.walletIconContainer}>
           <Image
             style={styles.walletStyle}
@@ -100,6 +105,7 @@ const HomeTabScreen = ({}) => {
           title="Copy Card Number"
           onPress={() => {}}></Button>
       </View>
+      <CarOperationModal></CarOperationModal>
     </SafeAreaView>
   );
 };

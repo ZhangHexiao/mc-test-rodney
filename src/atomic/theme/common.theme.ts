@@ -17,6 +17,7 @@ export const COLORS = {
   grey200: '#D6D6D6',
   grey100: '',
   superLight: '#F8F8F8',
+  accent: '#7A9A02',
 };
 
 export const SIZES = {

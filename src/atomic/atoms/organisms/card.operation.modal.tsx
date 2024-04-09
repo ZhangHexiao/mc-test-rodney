@@ -11,6 +11,7 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import ProgressBar from '../molecules/progress.bar';
 
 const drawerFullHeight = SIZES.height * 0.75;
 
@@ -62,13 +63,11 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
               <Text style={styles.iconText}>Card Details</Text>
             </View>
           </View>
-          <View style={styles.balanceSection}>
-            <View style={styles.balanceRow}>
-              <Text style={styles.balanceNumber}>$1,000.00</Text>
-              <Text style={styles.balanceText}>Current Balance</Text>
-            </View>
+          <View style={styles.section}>
+            <ProgressBar currentBalance={1000} totalCreditLimit={10000} />
             <View style={styles.creditRow}></View>
           </View>
+          <View style={styles.section}></View>
         </View>
       </ScrollView>
     </Animated.View>
@@ -84,9 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.superLight,
     overflow: 'hidden',
   },
-  // drawerContent: {
-  //   flex: 1,
-  // },
+
   content: {
     alignItems: 'center',
     paddingBottom: 20,
@@ -115,7 +112,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   // ================
-  balanceSection: {
+  section: {
     flex: 1,
     width: '100%',
     marginVertical: 16,
@@ -123,17 +120,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  balanceRow: {
-    alignItems: 'center',
-  },
+
   creditRow: {
+    marginVertical: 8,
     alignItems: 'center',
   },
-  balanceNumber: {
-    ...FONTS.H3,
-    fontWeight: '600',
-  },
-  balanceText: {},
 });
 
 export default CarOperationModal;

@@ -69,16 +69,14 @@ export const RootTabs = () => {
                   style={{
                     width: 24,
                     height: 24,
-                    tintColor: focused
-                      ? COLORS.primary
-                      : COLORS.notSelectedGray,
+                    tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
                     fontSize: 12,
                     fontFamily: 'regular',
-                    color: focused ? COLORS.primary : COLORS.notSelectedGray,
+                    color: focused ? COLORS.primary : COLORS.grey400,
                     marginTop: 4,
                   }}>
                   Home
@@ -107,16 +105,14 @@ export const RootTabs = () => {
                   style={{
                     width: 24,
                     height: 24,
-                    tintColor: focused
-                      ? COLORS.primary
-                      : COLORS.notSelectedGray,
+                    tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
                     fontSize: 12,
                     fontFamily: 'regular',
-                    color: focused ? COLORS.primary : COLORS.notSelectedGray,
+                    color: focused ? COLORS.primary : COLORS.grey400,
                     marginTop: 4,
                   }}>
                   Rewards
@@ -145,16 +141,14 @@ export const RootTabs = () => {
                   style={{
                     width: 24,
                     height: 24,
-                    tintColor: focused
-                      ? COLORS.primary
-                      : COLORS.notSelectedGray,
+                    tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
                     fontSize: 12,
                     fontFamily: 'regular',
-                    color: focused ? COLORS.primary : COLORS.notSelectedGray,
+                    color: focused ? COLORS.primary : COLORS.grey400,
                     marginTop: 4,
                   }}>
                   PFM
@@ -183,16 +177,14 @@ export const RootTabs = () => {
                   style={{
                     width: 24,
                     height: 24,
-                    tintColor: focused
-                      ? COLORS.primary
-                      : COLORS.notSelectedGray,
+                    tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
                     fontSize: 12,
                     fontFamily: 'regular',
-                    color: focused ? COLORS.primary : COLORS.notSelectedGray,
+                    color: focused ? COLORS.primary : COLORS.grey400,
                     marginTop: 4,
                   }}>
                   More

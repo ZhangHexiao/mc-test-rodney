@@ -150,17 +150,17 @@ const styles = StyleSheet.create({
   },
 
   cardNumberTitle: {
-    ...FONTS.h3,
+    ...FONTS.P1,
     color: COLORS.primary,
     textAlign: 'center',
   },
 
   cardNumberStyle: {
     paddingTop: 8,
-    ...FONTS.h2,
+    ...FONTS.H5,
+    fontWeight: '600',
     color: COLORS.black,
     textAlign: 'center',
-    fontWeight: '600',
   },
 
   cardInfoContainer: {

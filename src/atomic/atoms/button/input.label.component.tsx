@@ -16,7 +16,7 @@ export const InputLabel: React.FC<InputLabelProps> = props => {
 
 const styles = StyleSheet.create({
   inputLabel: {
-    fontSize: 12,
-    color: COLORS.secondaryBlack,
+    ...FONTS.Label,
+    color: COLORS.black,
   },
 });

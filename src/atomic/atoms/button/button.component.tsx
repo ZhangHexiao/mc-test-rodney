@@ -38,7 +38,12 @@ export const Button = (props: any) => {
         {isLoading && isLoading == true ? (
           <ActivityIndicator size="small" color={COLORS.white} />
         ) : (
-          <Text style={{...FONTS.h3, fontWeight: '600', ...{color: textColor}}}>
+          <Text
+            style={
+              isSmallSize
+                ? {...FONTS.P2, fontWeight: '700', color: textColor}
+                : {...FONTS.H6, fontWeight: '600', color: textColor}
+            }>
             {props.title}
           </Text>
         )}

@@ -22,7 +22,7 @@ export const Input: React.FC<InputProps> = props => {
       <View
         style={{
           ...styles.inputContainer,
-          ...{borderColor: COLORS.secondaryBlack},
+          ...{borderColor: COLORS.black},
           ...(props.style as object),
         }}>
         <TextInput
@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '100%',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.superLight,
     paddingHorizontal: SIZES.padding,
     paddingVertical: SIZES.padding2,
     borderRadius: 4,
     borderWidth: 0.3,
-    borderColor: COLORS.secondaryBlack,
+    borderColor: COLORS.black,
     marginVertical: 5,
     flexDirection: 'row',
     marginBottom: 8,
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   input: {
     color: COLORS.black,
     flex: 1,
-    fontFamily: 'regular',
     paddingTop: 0,
     textAlignVertical: 'top',
   },

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    ...FONTS.h3,
+    ...FONTS.P1,
     color: COLORS.black,
     textAlign: 'center',
     fontWeight: '500',

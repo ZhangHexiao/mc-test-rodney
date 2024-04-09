@@ -62,7 +62,13 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
               <Text style={styles.iconText}>Card Details</Text>
             </View>
           </View>
-          <View style={styles.balanceSection}></View>
+          <View style={styles.balanceSection}>
+            <View style={styles.balanceRow}>
+              <Text style={styles.balanceNumber}>$1,000.00</Text>
+              <Text style={styles.balanceText}>Current Balance</Text>
+            </View>
+            <View style={styles.creditRow}></View>
+          </View>
         </View>
       </ScrollView>
     </Animated.View>
@@ -104,14 +110,30 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   iconText: {
-    ...FONTS.h4,
+    ...FONTS.P2,
     color: COLORS.black,
     textAlign: 'center',
   },
   // ================
   balanceSection: {
+    flex: 1,
+    width: '100%',
     marginVertical: 16,
+    backgroundColor: COLORS.white,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  balanceRow: {
+    alignItems: 'center',
+  },
+  creditRow: {
+    alignItems: 'center',
+  },
+  balanceNumber: {
+    ...FONTS.H3,
+    fontWeight: '600',
+  },
+  balanceText: {},
 });
 
 export default CarOperationModal;

@@ -44,7 +44,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
             style={{
               ...styles.modal,
               borderTopWidth: 8,
-              borderTopColor: theme.COLORS.sportifyGreen,
+              borderTopColor: COLORS.sportifyGreen,
             }}>
             <TouchableOpacity
               style={styles.closeIconStyle}
@@ -65,14 +65,14 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
                 id="userName"
                 onInputChanged={inputChangedHandler}
                 placeholder="user@gmail.com"
-                placeholderTextColor={theme.COLORS.black}
+                placeholderTextColor={COLORS.black}
               />
               <InputLabel title="Password" />
               <Input
                 id="userPassword"
                 onInputChanged={inputChangedHandler}
                 placeholder="••••••••••"
-                placeholderTextColor={theme.COLORS.black}
+                placeholderTextColor={COLORS.black}
                 secureTextEntry
               />
             </View>
@@ -211,7 +211,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
           title="Continue"
           filled
           disable
-          backgroundColor={theme.COLORS.disalbeGray}
+          backgroundColor={COLORS.grey200}
           onPress={() => {}}
         />
         <Button
@@ -242,8 +242,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    ...FONTS.h2,
-    fontWeight: '500',
+    ...FONTS.H5,
+    fontWeight: '600',
     color: COLORS.black,
     textAlign: 'center',
   },
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    ...FONTS.h3,
+    ...FONTS.P1,
     color: COLORS.black,
     textAlign: 'center',
   },
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
 
   // ==================
   successTitle: {
-    ...FONTS.h1,
+    ...FONTS.H4,
     color: COLORS.black,
     textAlign: 'center',
   },

@@ -12,6 +12,7 @@ import {
   Image,
 } from 'react-native';
 import ProgressBar from '../molecules/progress.bar';
+import PaymentInfo from '../molecules/payment.info.component';
 
 const drawerFullHeight = SIZES.height * 0.75;
 
@@ -38,6 +39,7 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
     <Animated.View style={[styles.drawer, {height: animatedHeight}]}>
       <ScrollView
         // style={styles.drawerContent}
+        // bounces={false}
         showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={styles.operationIconsRow}>
@@ -67,6 +69,14 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
             <ProgressBar currentBalance={1000} totalCreditLimit={10000} />
             <View style={styles.creditRow}></View>
           </View>
+          <View style={styles.section}>
+            <PaymentInfo
+              statementBalance={600}
+              minimumPayment={60}
+              dueInDays={5}
+              onMakePayment={() => {}}
+            />
+          </View>
           <View style={styles.section}></View>
         </View>
       </ScrollView>
@@ -85,6 +95,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
+    flex: 1,
     alignItems: 'center',
     paddingBottom: 20,
   },
@@ -115,7 +126,7 @@ const styles = StyleSheet.create({
   section: {
     flex: 1,
     width: '100%',
-    marginVertical: 16,
+    marginTop: 16,
     backgroundColor: COLORS.white,
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,6 +135,7 @@ const styles = StyleSheet.create({
   creditRow: {
     marginVertical: 8,
     alignItems: 'center',
+    width: '100%',
   },
 });
 

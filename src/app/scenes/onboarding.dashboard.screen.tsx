@@ -107,12 +107,8 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
               <Image source={icons.successCircle} resizeMode="contain"></Image>
             </LinearGradient>
             <View style={{paddingTop: 24}}>
-              <View style={styles.titleContainer}>
-                <Text style={styles.successTitle}>All Set!</Text>
-              </View>
-              <View style={styles.subTitleContainer}>
-                <Text style={styles.subTitle}>Enjoy your digital journey</Text>
-              </View>
+              <Text style={styles.successTitle}>All Set!</Text>
+              <Text style={styles.subTitle}>Enjoy your digital journey</Text>
             </View>
 
             <Button
@@ -139,15 +135,11 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
         backgroundColor="transparent"
       />
       <View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Connect service providers</Text>
-        </View>
-        <View style={styles.subTitleContainer}>
-          <Text style={styles.subTitle}>
-            Select accounts you have that you would like to update with your new
-            credit card
-          </Text>
-        </View>
+        <Text style={styles.title}>Connect service providers</Text>
+        <Text style={styles.subTitle}>
+          Select accounts you have that you would like to update with your new
+          credit card
+        </Text>
       </View>
 
       <View style={styles.providerContainer}>
@@ -235,28 +227,20 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
 
-  titleContainer: {
-    marginHorizontal: 24,
-    marginVertical: 24,
-    alignItems: 'center',
-  },
-
   title: {
     ...FONTS.H5,
     fontWeight: '600',
     color: COLORS.black,
     textAlign: 'center',
-  },
-
-  subTitleContainer: {
-    marginHorizontal: 37,
-    alignItems: 'center',
+    marginHorizontal: 24,
+    marginVertical: 24,
   },
 
   subTitle: {
     ...FONTS.P1,
     color: COLORS.black,
     textAlign: 'center',
+    marginHorizontal: 37,
   },
 
   providerContainer: {
@@ -360,6 +344,8 @@ const styles = StyleSheet.create({
     ...FONTS.H4,
     color: COLORS.black,
     textAlign: 'center',
+    marginHorizontal: 24,
+    marginVertical: 24,
   },
   modalSuccess: {
     height: 388,

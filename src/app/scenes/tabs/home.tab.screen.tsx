@@ -85,12 +85,12 @@ const HomeTabScreen: React.FC = () => {
           </View>
           <View style={styles.cardDetailContainer}>
             <Text style={styles.cardNumberTitle}>Card Number</Text>
-            <Text style={styles.cardNumberStyle}>5426123456781234</Text>
+            <Text style={styles.cardNumber}>5426123456781234</Text>
           </View>
           <View style={styles.cardInfoContainer}>
             <View style={{flex: 2, paddingLeft: 48}}>
               <Text style={styles.cardNumberTitle}>Expiration Date</Text>
-              <Text style={styles.cardNumberStyle}>09/25</Text>
+              <Text style={styles.cardNumber}>09/25</Text>
             </View>
             <View
               style={{
@@ -100,7 +100,7 @@ const HomeTabScreen: React.FC = () => {
                 borderLeftWidth: 1.5,
               }}>
               <Text style={styles.cardNumberTitle}>CVC</Text>
-              <Text style={styles.cardNumberStyle}>242</Text>
+              <Text style={styles.cardNumber}>242</Text>
             </View>
           </View>
           <Button
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  cardNumberStyle: {
+  cardNumber: {
     paddingTop: 8,
     ...FONTS.H5,
     fontWeight: '600',

@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     height: 8,
-    backgroundColor: COLORS.grey100,
-    borderRadius: 10,
-    overflow: 'hidden',
+    backgroundColor: COLORS.grey200,
+    borderRadius: 3,
     marginVertical: 10,
   },
   progressBar: {
     height: '100%',
+    borderRadius: 3,
     backgroundColor: COLORS.accent,
   },
   creditDetails: {

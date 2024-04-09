@@ -237,10 +237,11 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    ...FONTS.P1,
-    color: COLORS.black,
+    ...FONTS.H6,
     textAlign: 'center',
     marginHorizontal: 37,
+    fontWeight: '600',
+    color: COLORS.grey800,
   },
 
   providerContainer: {
@@ -346,6 +347,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginHorizontal: 24,
     marginVertical: 24,
+    fontWeight: '600',
   },
   modalSuccess: {
     height: 388,

@@ -20,11 +20,13 @@ const drawerFullHeight = SIZES.height * 0.75;
 interface CarOperationModalProps {
   isOpen: boolean;
   toggleCardModal: () => void;
+  navigateToControls: () => void;
 }
 
 const CarOperationModal: React.FC<CarOperationModalProps> = ({
   isOpen,
   toggleCardModal,
+  navigateToControls,
 }) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
 
@@ -38,18 +40,17 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
 
   return (
     <Animated.View style={[styles.drawer, {height: animatedHeight}]}>
-      <ScrollView
-        // style={styles.drawerContent}
-        // bounces={false}
-        showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={styles.operationIconsRow}>
             <View style={styles.operationIconsContainer}>
-              <Image
-                style={styles.operationIcon}
-                source={icons.cardControl}
-                resizeMode="contain"></Image>
-              <Text style={styles.iconText}>Controls</Text>
+              <TouchableOpacity onPress={navigateToControls}>
+                <Image
+                  style={styles.operationIcon}
+                  source={icons.cardControl}
+                  resizeMode="contain"></Image>
+                <Text style={styles.iconText}>Controls</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.operationIconsContainer}>
               <Image

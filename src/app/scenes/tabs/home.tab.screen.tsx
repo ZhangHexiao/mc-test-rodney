@@ -24,7 +24,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Card from '../../../atomic/atoms/molecules/card';
 import babelConfig from 'babel.config';
 import {blue} from 'react-native-reanimated';
-import CarOperationModal from './card.operation.modal';
+import CarOperationModal from '../../../atomic/atoms/organisms/card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 //navigation-- add in to {} for doing navigation to card controles
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.superLight,
   },
 
   cardListContainer: {

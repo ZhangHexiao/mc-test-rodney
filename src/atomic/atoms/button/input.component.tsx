@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet, TextInput} from 'react-native';
-import React, {FC} from 'react';
+import React from 'react';
 import {COLORS, SIZES} from '../../theme/common.theme';
 
 interface InputProps {
@@ -12,7 +12,7 @@ interface InputProps {
   onInputChanged: (id: string, text: string) => void;
 }
 
-export const Input: FC<InputProps> = props => {
+export const Input: React.FC<InputProps> = props => {
   const onChangeText = (text: string) => {
     props.onInputChanged(props.id, text);
   };

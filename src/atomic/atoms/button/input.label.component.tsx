@@ -6,10 +6,10 @@ interface InputLabelProps {
   title: string;
 }
 
-export const InputLabel: React.FC<InputLabelProps> = ({title}) => {
+export const InputLabel: React.FC<InputLabelProps> = props => {
   return (
     <View style={{marginVertical: 6}}>
-      <Text style={styles.inputLabel}>{title}</Text>
+      <Text style={styles.inputLabel}>{props.title}</Text>
     </View>
   );
 };

@@ -1,83 +1,80 @@
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
-  Text,
-  Dimensions,
-  Platform,
-  Image,
-  Modal,
   StyleSheet,
   Animated,
+  Dimensions,
   TouchableOpacity,
+  Text,
+  ScrollView,
 } from 'react-native';
-import {images, icons} from '../../constants/index';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
-import {useRoute} from '@react-navigation/native';
-import {RouteProp} from '@react-navigation/core';
-import HomeTabScreen from './home.tab.screen';
-import {Button} from '../../../atomic/atoms/button/button.component';
-import {useEffect, useRef, useState} from 'react';
 
-export const CarOperationModal: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const screenHeight = Dimensions.get('window').height;
+const drawerFullHeight = screenHeight * 0.75;
+const drawerPartialHeight = screenHeight * 0.25;
 
-  const animatedHeight = useRef(new Animated.Value(SIZES.height * 0.7)).current;
+interface CarOperationModalProps {
+  isOpen: boolean;
+  toggleCardModal: () => void;
+}
 
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-    Animated.timing(animatedHeight, {
-      toValue: isOpen ? SIZES.height * 0.7 : SIZES.height * 0.18,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  };
+const CarOperationModal: React.FC<CarOperationModalProps> = ({
+  isOpen,
+  toggleCardModal,
+}) => {
+  const animatedHeight = useRef(
+    new Animated.Value(drawerPartialHeight),
+  ).current;
 
   useEffect(() => {
-    toggleDrawer();
-  }, []);
+    Animated.timing(animatedHeight, {
+      toValue: isOpen ? drawerPartialHeight : drawerFullHeight,
+      duration: 500,
+      useNativeDriver: false,
+    }).start();
+  }, [isOpen, screenHeight]);
 
   return (
-    <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.drawer,
-          {
-            bottom: 0,
-            height: animatedHeight,
-            // transform: [{translateY: animatedPosition}],
-          },
-        ]}>
-        <Text>Drag handle or content</Text>
-      </Animated.View>
-      <TouchableOpacity style={styles.button} onPress={toggleDrawer}>
-        <Text>{isOpen ? 'Close' : 'Open'} Drawer</Text>
-      </TouchableOpacity>
-    </View>
+    <Animated.View style={[styles.drawer, {height: animatedHeight}]}>
+      <ScrollView
+        style={styles.drawerContent}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.content}>
+          {Array.from({length: 20}, (_, i) => (
+            <Text key={i} style={styles.item}>
+              Item {i + 1}
+            </Text>
+          ))}
+        </View>
+      </ScrollView>
+    </Animated.View>
   );
 };
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.black,
-    // width: SIZES.width,
-    zIndex: 999,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   drawer: {
+    paddingBottom: 80,
     position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 100,
-    height: 200,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.gray,
+    width: '100%',
+    bottom: 0,
+    backgroundColor: 'white',
+    overflow: 'hidden',
   },
-  button: {
-    width: 200,
+  drawerContent: {
+    flex: 1,
+  },
+  toggleButton: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  content: {
+    alignItems: 'center',
+    paddingBottom: 20,
+  },
+  item: {
     padding: 10,
-    backgroundColor: 'blue',
+    fontSize: 18,
   },
 });
+
 export default CarOperationModal;

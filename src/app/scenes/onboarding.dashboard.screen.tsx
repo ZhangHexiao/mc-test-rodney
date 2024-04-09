@@ -1,4 +1,4 @@
-import React, {FC, Fragment, useCallback, useReducer, useState} from 'react';
+import React, {useCallback, useReducer, useState} from 'react';
 import {
   StatusBar,
   Text,
@@ -23,7 +23,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
-const OnboardingDashboardScreen: FC<ScreenProps> = ({navigation}) => {
+const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
   const [connectModalVisible, setConnectModalVisible] = useState(false);
   const [connectSuccessModalVisible, setConnectSuccessModalVisible] =
     useState(false);

@@ -28,7 +28,10 @@ import CarOperationModal from './card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 //navigation-- add in to {} for doing navigation to card controles
-const HomeTabScreen = ({}) => {
+const HomeTabScreen: React.FC = () => {
+  const [cardModalOpen, setCardModalOpen] = useState(false);
+  const toggleCardModal = () => setCardModalOpen(!cardModalOpen);
+
   const userCards = [
     {
       cardNumber: 'Mastercard •••• 1234',
@@ -48,64 +51,68 @@ const HomeTabScreen = ({}) => {
         barStyle="dark-content"
         backgroundColor="transparent"
       />
-
-      <View style={{alignItems: 'center'}}>
-        <View style={styles.cardListContainer}>
-          <FlatList
-            horizontal
-            data={userCards}
-            snapToAlignment="center"
-            keyExtractor={(item, index) => index.toString()}
-            contentInset={{
-              left: (SIZES.width - 260) / 2 + 6,
-              right: (SIZES.width - 260) / 2 + 6,
-            }}
-            contentOffset={{x: -(SIZES.width - 260) / 2, y: 0}}
-            snapToInterval={260}
-            decelerationRate="fast"
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item}) => (
-              <Card
-                cardNumber={item.cardNumber}
-                cardType={item.cardType}
-                onPress={() => console.log('Card Pressed')}
-              />
-            )}
-          />
-        </View>
-
-        <View style={styles.walletIconContainer}>
-          <Image
-            style={styles.walletStyle}
-            source={images.appleWallet}
-            resizeMode="contain"></Image>
-        </View>
-        <View style={styles.cardDetailContainer}>
-          <Text style={styles.cardNumberTitle}>Card Number</Text>
-          <Text style={styles.cardNumberStyle}>5426123456781234</Text>
-        </View>
-        <View style={styles.cardInfoContainer}>
-          <View style={{flex: 2, paddingLeft: 48}}>
-            <Text style={styles.cardNumberTitle}>Expiration Date</Text>
-            <Text style={styles.cardNumberStyle}>09/25</Text>
+      <ScrollView>
+        <View style={{alignItems: 'center'}}>
+          <View style={styles.cardListContainer}>
+            <FlatList
+              horizontal
+              data={userCards}
+              snapToAlignment="center"
+              keyExtractor={(item, index) => index.toString()}
+              contentInset={{
+                left: (SIZES.width - 260) / 2 + 6,
+                right: (SIZES.width - 260) / 2 + 6,
+              }}
+              contentOffset={{x: -(SIZES.width - 260) / 2, y: 0}}
+              snapToInterval={260}
+              decelerationRate="fast"
+              showsHorizontalScrollIndicator={false}
+              renderItem={({item}) => (
+                <Card
+                  cardNumber={item.cardNumber}
+                  cardType={item.cardType}
+                  onPress={toggleCardModal}
+                />
+              )}
+            />
           </View>
-          <View
-            style={{
-              flex: 1,
-              paddingRight: 48,
-              borderColor: COLORS.gray,
-              borderLeftWidth: 1.5,
-            }}>
-            <Text style={styles.cardNumberTitle}>CVC</Text>
-            <Text style={styles.cardNumberStyle}>242</Text>
+
+          <View style={styles.walletIconContainer}>
+            <Image
+              style={styles.walletStyle}
+              source={images.appleWallet}
+              resizeMode="contain"></Image>
           </View>
+          <View style={styles.cardDetailContainer}>
+            <Text style={styles.cardNumberTitle}>Card Number</Text>
+            <Text style={styles.cardNumberStyle}>5426123456781234</Text>
+          </View>
+          <View style={styles.cardInfoContainer}>
+            <View style={{flex: 2, paddingLeft: 48}}>
+              <Text style={styles.cardNumberTitle}>Expiration Date</Text>
+              <Text style={styles.cardNumberStyle}>09/25</Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                paddingRight: 48,
+                borderColor: COLORS.gray,
+                borderLeftWidth: 1.5,
+              }}>
+              <Text style={styles.cardNumberTitle}>CVC</Text>
+              <Text style={styles.cardNumberStyle}>242</Text>
+            </View>
+          </View>
+          <Button
+            style={{marginVertical: 24}}
+            title="Copy Card Number"
+            onPress={() => {}}></Button>
         </View>
-        <Button
-          style={{marginVertical: 24}}
-          title="Copy Card Number"
-          onPress={() => {}}></Button>
-      </View>
-      <CarOperationModal></CarOperationModal>
+      </ScrollView>
+      <CarOperationModal
+        isOpen={cardModalOpen}
+        toggleCardModal={toggleCardModal}
+      />
     </SafeAreaView>
   );
 };

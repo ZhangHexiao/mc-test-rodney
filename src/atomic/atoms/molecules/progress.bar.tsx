@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   progressBar: {
     height: '100%',
     borderRadius: 3,
-    backgroundColor: COLORS.accent,
+    backgroundColor: COLORS.success,
   },
   creditDetails: {
     flexDirection: 'row',

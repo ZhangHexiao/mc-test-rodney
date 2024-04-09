@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import ProgressBar from '../molecules/progress.bar';
 import PaymentInfo from '../molecules/payment.info.component';
+import RecentTransactions from '../molecules/transaction.list';
 
 const drawerFullHeight = SIZES.height * 0.75;
 
@@ -77,7 +78,7 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
               onMakePayment={() => {}}
             />
           </View>
-          <View style={styles.section}></View>
+          <RecentTransactions />
         </View>
       </ScrollView>
     </Animated.View>

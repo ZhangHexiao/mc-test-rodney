@@ -34,11 +34,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({
         </View>
       </View>
       <View style={styles.btnContainer}>
-        <Button
-          style={{flex: 1}}
-          title="Make a payment"
-          onPress={onMakePayment}
-        />
+        <Button title="Make a payment" onPress={onMakePayment} />
       </View>
     </View>
   );
@@ -85,8 +81,6 @@ const styles = StyleSheet.create({
   btnContainer: {
     flex: 1,
     alignItems: 'center',
-    // width: '100%',
-    // marginVertical: 12,
   },
 });
 

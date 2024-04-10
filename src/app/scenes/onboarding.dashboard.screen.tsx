@@ -22,75 +22,19 @@ import {Input} from '../../atomic/atoms/input.component';
 import LinearGradient from 'react-native-linear-gradient';
 import {HomeTabRoutes} from './tabs/tabs.stack';
 import ConnectSuccessModal from '../../atomic/organisms/connect.success.modal';
+import ConnectProviderModal from '../../atomic/organisms/connect.provider.modal';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
 const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
-  const [connectModalVisible, setConnectModalVisible] = useState(false);
+  const [connectProviderModalVisible, setConnectProviderModalVisible] =
+    useState(false);
   const [connectSuccessModalVisible, setConnectSuccessModalVisible] =
     useState(false);
-  const inputChangedHandler = useCallback(
-    (inputId: string, inputValue: string) => {},
-    [],
-  );
 
   const theme = useTheme();
   const connectProviderModal = () => {
-    return (
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={connectModalVisible}>
-        <View style={styles.modalContainer}>
-          <View
-            style={{
-              ...styles.modal,
-              borderTopWidth: 8,
-              borderTopColor: COLORS.sportifyGreen,
-            }}>
-            <TouchableOpacity
-              style={styles.closeIconStyle}
-              onPress={() => {
-                setConnectModalVisible(false);
-              }}>
-              <Image source={icons.closeMark} resizeMode="contain"></Image>
-            </TouchableOpacity>
-            <Image
-              source={images.spotify}
-              resizeMode="contain"
-              style={styles.modalImage}
-            />
-            <Text style={styles.title}>Connect Spotify</Text>
-            <View style={{margin: 16}}>
-              <InputLabel title="User Name" />
-              <Input
-                id="userName"
-                onInputChanged={inputChangedHandler}
-                placeholder="user@gmail.com"
-                placeholderTextColor={COLORS.black}
-              />
-              <InputLabel title="Password" />
-              <Input
-                id="userPassword"
-                onInputChanged={inputChangedHandler}
-                placeholder="••••••••••"
-                placeholderTextColor={COLORS.black}
-                secureTextEntry
-              />
-            </View>
-            <Button
-              title="Connect"
-              filled
-              onPress={() => {
-                setConnectModalVisible(false);
-              }}
-              backgroundColor={theme.COLORS.black}
-              style={styles.modalBtn}
-            />
-          </View>
-        </View>
-      </Modal>
-    );
+    return <></>;
   };
 
   return (
@@ -142,7 +86,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
             small
             filled
             onPress={() => {
-              setConnectModalVisible(true);
+              setConnectProviderModalVisible(true);
             }}
           />
         </View>
@@ -182,7 +126,12 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
           }}
         />
       </View>
-      {connectProviderModal()}
+      <ConnectProviderModal
+        isOpen={connectProviderModalVisible}
+        toggleModal={() =>
+          setConnectProviderModalVisible(!connectProviderModalVisible)
+        }
+      />
       <ConnectSuccessModal
         isOpen={connectSuccessModalVisible}
         toggleModal={() =>
@@ -269,15 +218,6 @@ const styles = StyleSheet.create({
     right: 5,
   },
 
-  closeIconStyle: {
-    width: 10,
-    height: 10,
-    aspectRatio: 1,
-    position: 'absolute',
-    top: 10,
-    right: 10,
-  },
-
   footer: {
     width: '100%',
     marginVertical: 12,
@@ -285,32 +225,6 @@ const styles = StyleSheet.create({
     bottom: 22,
     right: 16,
     left: 16,
-  },
-  // ==================
-  modalContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
-  },
-  modal: {
-    height: 526,
-    width: SIZES.width * 0.9,
-    backgroundColor: COLORS.white,
-    alignItems: 'center',
-    padding: 16,
-  },
-  modalBtn: {
-    width: '100%',
-    backgroundColor: COLORS.black,
-    position: 'absolute',
-    bottom: 24,
-  },
-  modalImage: {
-    height: SIZES.width * 0.2,
-    width: SIZES.width * 0.2,
-    marginVertical: 22,
-    borderRadius: (SIZES.width * 0.2) / 2,
   },
 });
 

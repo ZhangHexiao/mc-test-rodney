@@ -13,7 +13,7 @@ import {icons, images} from '../../app/constants/index';
 import {COLORS, FONTS} from '../theme/common.theme';
 // Make sure the import path is correct
 
-interface Transaction {
+export interface Transaction {
   id: string;
   logo: ImageSourcePropType; // Change 'any' to 'ImageSourcePropType' if using local images
   merchant: string;
@@ -22,34 +22,13 @@ interface Transaction {
   date: string;
 }
 
-const recentTransactionsData: Transaction[] = [
-  {
-    id: '1',
-    logo: images.starbucksAvatar,
-    merchant: 'Starbucks',
-    amount: 5.43,
-    points: 5,
-    date: '2021-10-12 08:23AM',
-  },
-  {
-    id: '2',
-    logo: images.amazonAvatar,
-    merchant: 'Amazon',
-    amount: 125.3,
-    points: 125,
-    date: '2021-10-12 08:23AM',
-  },
-  {
-    id: '3',
-    logo: images.ddAvatar,
-    merchant: 'Dunkin Donuts',
-    amount: 10.84,
-    points: 10,
-    date: '2021-10-12 08:23AM',
-  },
-];
+interface RecentTransactionsPros {
+  transactions: Transaction[];
+}
 
-const RecentTransactions: React.FC = () => {
+const RecentTransactions: React.FC<RecentTransactionsPros> = ({
+  transactions,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -62,7 +41,7 @@ const RecentTransactions: React.FC = () => {
         </TouchableOpacity>
       </View>
       <View>
-        {recentTransactionsData.map(item => (
+        {transactions.map(item => (
           <TransactionItem
             key={item.id}
             merchantLogo={item.logo}

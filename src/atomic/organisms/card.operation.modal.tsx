@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import ProgressBar from '../molecules/progress.bar';
 import PaymentInfo from '../molecules/payment.info.component';
-import RecentTransactions from '../molecules/transaction.list';
+import RecentTransactions, {Transaction} from '../molecules/transaction.list';
 
 const drawerFullHeight = SIZES.height * 0.75;
 
@@ -22,7 +22,6 @@ interface CarOperationModalProps {
   toggleCardModal: () => void;
   navigateToControls: () => void;
 }
-
 const CarOperationModal: React.FC<CarOperationModalProps> = ({
   isOpen,
   toggleCardModal,
@@ -30,6 +29,32 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
 }) => {
   const animatedHeight = useRef(new Animated.Value(0)).current;
 
+  const recentTransactionsData: Transaction[] = [
+    {
+      id: '1',
+      logo: images.starbucksAvatar,
+      merchant: 'Starbucks',
+      amount: 5.43,
+      points: 5,
+      date: '2021-10-12 08:23AM',
+    },
+    {
+      id: '2',
+      logo: images.amazonAvatar,
+      merchant: 'Amazon',
+      amount: 125.3,
+      points: 125,
+      date: '2021-10-12 08:23AM',
+    },
+    {
+      id: '3',
+      logo: images.ddAvatar,
+      merchant: 'Dunkin Donuts',
+      amount: 10.84,
+      points: 10,
+      date: '2021-10-12 08:23AM',
+    },
+  ];
   useEffect(() => {
     Animated.timing(animatedHeight, {
       toValue: isOpen ? 0 : drawerFullHeight,
@@ -79,7 +104,7 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
               onMakePayment={() => {}}
             />
           </View>
-          <RecentTransactions />
+          <RecentTransactions transactions={recentTransactionsData} />
         </View>
       </ScrollView>
     </Animated.View>

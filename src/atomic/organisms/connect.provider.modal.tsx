@@ -8,19 +8,26 @@ import {
   Image,
   Modal,
   TouchableOpacity,
+  ImageSourcePropType,
 } from 'react-native';
 import {Button} from '../atoms/button.component';
 import {InputLabel} from '../atoms/input.label.component';
 import {Input} from '../atoms/input.component';
 
-interface ConnectProviderModalModalProps {
+export interface ConnectProviderModalProps {
+  providerLogo: ImageSourcePropType;
   isOpen: boolean;
-  toggleModal: () => void;
+  colorThem: string;
+  closeModal: () => void;
+  connectProviderAction: () => void;
 }
 
-const ConnectProviderModal: React.FC<ConnectProviderModalModalProps> = ({
+const ConnectProviderModal: React.FC<ConnectProviderModalProps> = ({
+  providerLogo,
   isOpen,
-  toggleModal,
+  colorThem,
+  closeModal,
+  connectProviderAction,
 }) => {
   const inputChangedHandler = useCallback(
     (inputId: string, inputValue: string) => {},
@@ -33,17 +40,13 @@ const ConnectProviderModal: React.FC<ConnectProviderModalModalProps> = ({
           style={{
             ...styles.modal,
             borderTopWidth: 8,
-            borderTopColor: COLORS.sportifyGreen,
+            borderTopColor: colorThem,
           }}>
-          <TouchableOpacity
-            style={styles.closeIconStyle}
-            onPress={() => {
-              //   setConnectModalVisible(false);
-            }}>
+          <TouchableOpacity style={styles.closeIconStyle} onPress={closeModal}>
             <Image source={icons.closeMark} resizeMode="contain"></Image>
           </TouchableOpacity>
           <Image
-            source={images.spotify}
+            source={providerLogo}
             resizeMode="contain"
             style={styles.modalImage}
           />
@@ -68,7 +71,7 @@ const ConnectProviderModal: React.FC<ConnectProviderModalModalProps> = ({
           <Button
             title="Connect"
             filled
-            onPress={toggleModal}
+            onPress={connectProviderAction}
             backgroundColor={COLORS.black}
             style={styles.modalBtn}
           />

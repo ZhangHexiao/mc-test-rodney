@@ -9,6 +9,7 @@ import {
   Modal,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  ImageSourcePropType,
 } from 'react-native';
 
 import {StackScreenProps} from '@react-navigation/stack';
@@ -17,26 +18,65 @@ import {DashboardRoutes} from './dashboard.stack';
 import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
 import {images, icons} from '../constants/index';
 import {Button} from '../../atomic/atoms/button.component';
-import {InputLabel} from '../../atomic/atoms/input.label.component';
-import {Input} from '../../atomic/atoms/input.component';
-import LinearGradient from 'react-native-linear-gradient';
-import {HomeTabRoutes} from './tabs/tabs.stack';
 import ConnectSuccessModal from '../../atomic/organisms/connect.success.modal';
-import ConnectProviderModal from '../../atomic/organisms/connect.provider.modal';
+import ConnectProviderModal, {
+  ConnectProviderModalProps,
+} from '../../atomic/organisms/connect.provider.modal';
+import ProviderConnection from '../../atomic/molecules/provider.connection.component';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
 const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
+  const providerList = [
+    {
+      colorTheme: COLORS.black,
+      key: 'netflix',
+      icon: images.netflix,
+      connectProviderRequest: () => {
+        setConnectStatus(preMap => preMap.set('netflix', true));
+      },
+    },
+    {
+      colorTheme: COLORS.success,
+      key: 'spotify',
+      icon: images.spotify,
+      connectProviderRequest: () => {
+        setConnectStatus(preMap => preMap.set('netflix', true));
+      },
+    },
+    {
+      colorTheme: COLORS.white,
+      key: 'uberEats',
+      icon: images.uberEats,
+      connectProviderRequest: () => {
+        setConnectStatus(preMap => preMap.set('netflix', true));
+      },
+    },
+    {
+      colorTheme: COLORS.success,
+      key: 'starbucks',
+      icon: images.starbucks,
+      connectProviderRequest: () => {
+        setConnectStatus(preMap => preMap.set('netflix', true));
+      },
+    },
+  ];
+
+  const [connectStatus, setConnectStatus] = useState(
+    new Map<string, boolean>([
+      ['netflix', false],
+      ['spotify', true],
+      ['uberEats', true],
+      ['starbucks', false],
+    ]),
+  );
+
+  const [providerInfo, setProviderInfo] = useState<ConnectProviderModalProps>();
+
   const [connectProviderModalVisible, setConnectProviderModalVisible] =
     useState(false);
   const [connectSuccessModalVisible, setConnectSuccessModalVisible] =
     useState(false);
-
-  const theme = useTheme();
-  const connectProviderModal = () => {
-    return <></>;
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -55,59 +95,26 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       </View>
 
       <View style={styles.providerContainer}>
-        <View style={{...styles.providerBox, ...styles.providerBoxShadow}}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.imageStyle}
-              source={images.netflix}
-              resizeMode="contain"></Image>
-          </View>
-          <Button
-            title="Connect"
-            small
-            onPress={() => {
-              setConnectSuccessModalVisible(true);
-            }}
-          />
-        </View>
-        <View style={{...styles.providerBox, ...styles.providerBoxBorder}}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.imageStyle}
-              source={images.spotify}
-              resizeMode="contain"></Image>
-          </View>
-          <Image
-            style={styles.checkIconStyle}
-            source={icons.checkMark}
-            resizeMode="contain"></Image>
-          <Button
-            title="Connect"
-            small
-            filled
-            onPress={() => {
-              setConnectProviderModalVisible(true);
-            }}
-          />
-        </View>
-        <View style={{...styles.providerBox, ...styles.providerBoxShadow}}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.imageStyle}
-              source={images.uberEats}
-              resizeMode="contain"></Image>
-          </View>
-          <Button title="Connect" small onPress={() => {}} />
-        </View>
-        <View style={{...styles.providerBox, ...styles.providerBoxShadow}}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.imageStyle}
-              source={images.starbucks}
-              resizeMode="contain"></Image>
-          </View>
-          <Button title="Connect" small onPress={() => {}} />
-        </View>
+        {providerList.map(item => {
+          return (
+            <ProviderConnection
+              logo={item.icon}
+              isConnected={connectStatus.get(item.key) as boolean}
+              onPressConnect={() => {
+                setConnectProviderModalVisible(true);
+                setProviderInfo({
+                  providerLogo: item.icon,
+                  isOpen: connectProviderModalVisible,
+                  colorThem: item.colorTheme,
+                  closeModal: () => {
+                    setConnectProviderModalVisible(false);
+                  },
+                  connectProviderAction: item.connectProviderRequest,
+                });
+              }}
+            />
+          );
+        })}
       </View>
       <View style={styles.footer}>
         <Button
@@ -127,10 +134,17 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
         />
       </View>
       <ConnectProviderModal
+        providerLogo={providerInfo?.providerLogo as ImageSourcePropType}
+        colorThem={providerInfo?.colorThem as string}
         isOpen={connectProviderModalVisible}
-        toggleModal={() =>
+        closeModal={() =>
           setConnectProviderModalVisible(!connectProviderModalVisible)
         }
+        connectProviderAction={() => {
+          providerInfo?.connectProviderAction();
+          setConnectProviderModalVisible(!connectProviderModalVisible);
+          setConnectSuccessModalVisible(!connectSuccessModalVisible);
+        }}
       />
       <ConnectSuccessModal
         isOpen={connectSuccessModalVisible}
@@ -171,51 +185,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginVertical: 16,
     marginHorizontal: 12,
-  },
-
-  providerBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 8,
-    paddingVertical: 16,
-    width: (SIZES.width - 24) / 2 - 16,
-  },
-
-  providerBoxShadow: {
-    shadowOffset: {width: 2, height: 2},
-    shadowOpacity: 0.3,
-    shadowRadius: 2.5,
-    borderWidth: 0.5,
-    borderRadius: 8,
-    borderColor: COLORS.gray,
-  },
-
-  providerBoxBorder: {
-    borderWidth: 3,
-    borderRadius: 8,
-    borderColor: COLORS.primary,
-  },
-
-  imageContainer: {
-    marginHorizontal: 36,
-    marginBottom: 12,
-  },
-
-  imageStyle: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 1,
-    padding: 30,
-    borderRadius: (SIZES.width - 24) / 2,
-  },
-
-  checkIconStyle: {
-    width: 20,
-    height: 20,
-    aspectRatio: 1,
-    position: 'absolute',
-    top: 5,
-    right: 5,
   },
 
   footer: {

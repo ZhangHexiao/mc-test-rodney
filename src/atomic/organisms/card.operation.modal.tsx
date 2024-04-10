@@ -1,5 +1,5 @@
-import {images, icons} from '../../../app/constants/index';
-import {SIZES, FONTS, COLORS} from '../../theme/common.theme';
+import {images, icons} from '../../app/constants/index';
+import {SIZES, FONTS, COLORS} from '../theme/common.theme';
 import React, {useState, useRef, useEffect} from 'react';
 import {
   View,

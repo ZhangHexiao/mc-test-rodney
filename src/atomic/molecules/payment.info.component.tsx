@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {COLORS, FONTS, SIZES} from '../../theme/common.theme';
-import {Button} from '../button/button.component';
+import {COLORS, FONTS, SIZES} from '../theme/common.theme';
+import {Button} from '../atoms/button/button.component';
 
 interface PaymentInfoProps {
   statementBalance: number;

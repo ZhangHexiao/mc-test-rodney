@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import {COLORS, FONTS} from '../../theme/common.theme';
+import {COLORS, FONTS} from '../theme/common.theme';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const Button = (props: any) => {

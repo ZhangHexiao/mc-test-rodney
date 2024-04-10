@@ -9,6 +9,7 @@ const Icons = {
   cardLockFill: require('../../assets/icons/card_lock_fill_icon.png'),
   cardLock: require('../../assets/icons/card_lock_icon.png'),
   rightArrow: require('../../assets/icons/arrow_right.png'),
+  leftArrow: require('../../assets/icons/arrow_left.png'),
 };
 
 export default Icons;

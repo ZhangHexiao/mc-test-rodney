@@ -16,9 +16,9 @@ import {useTheme} from 'styled-components/native';
 import {DashboardRoutes} from './dashboard.stack';
 import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
 import {images, icons} from '../constants/index';
-import {Button} from '../../atomic/atoms/button/button.component';
-import {InputLabel} from '../../atomic/atoms/button/input.label.component';
-import {Input} from '../../atomic/atoms/button/input.component';
+import {Button} from '../../atomic/atoms/button.component';
+import {InputLabel} from '../../atomic/atoms/input.label.component';
+import {Input} from '../../atomic/atoms/input.component';
 import LinearGradient from 'react-native-linear-gradient';
 import {HomeTabRoutes} from './tabs/tabs.stack';
 

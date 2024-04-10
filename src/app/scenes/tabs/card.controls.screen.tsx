@@ -17,14 +17,14 @@ import {useTheme} from 'styled-components/native';
 
 import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
 import {images, icons} from '../../constants/index';
-import {Button} from '../../../atomic/atoms/button/button.component';
-import {InputLabel} from '../../../atomic/atoms/button/input.label.component';
-import {Input} from '../../../atomic/atoms/button/input.component';
+import {Button} from '../../../atomic/atoms/button.component';
+import {InputLabel} from '../../../atomic/atoms/input.label.component';
+import {Input} from '../../../atomic/atoms/input.component';
 import LinearGradient from 'react-native-linear-gradient';
-import Card from '../../../atomic/atoms/molecules/card';
+import Card from '../../../atomic/molecules/card';
 import babelConfig from 'babel.config';
 import {blue} from 'react-native-reanimated';
-import CarOperationModal from '../../../atomic/atoms/organisms/card.operation.modal';
+import CarOperationModal from '../../../atomic/organisms/card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
 
 //navigation-- add in to {} for doing navigation to card controles

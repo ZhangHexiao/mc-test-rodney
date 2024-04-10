@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from '../../theme/common.theme';
+import {COLORS, SIZES} from '../theme/common.theme';
 
 interface InputProps {
   id: string;

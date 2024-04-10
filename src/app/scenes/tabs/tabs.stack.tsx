@@ -6,8 +6,8 @@ import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/core';
 import HomeTabScreen from './home.tab.screen';
 import {createStackNavigator} from '@react-navigation/stack';
-import CardControlsScreen from './card_controls_screen';
-import {NavigationHeader} from '../../../atomic/atoms/molecules/navigation.header.component';
+import CardControlsScreen from './card.controls.screen';
+import {NavigationHeader} from '../../../atomic/molecules/navigation.header.component';
 
 export type HomeTabRoutes = {
   HomeTab: undefined;
@@ -35,7 +35,13 @@ const HomeTabStackNavigator = () => {
         options={{
           header: ({navigation, route, options}) => {
             const title = 'Card Controls'; // You can also use route.params to dynamically set the title
-            return <NavigationHeader title={title} />;
+            return (
+              <NavigationHeader
+                title={title}
+                rightIcon={icons.leftArrow}
+                onIconPress={navigation.goBack}
+              />
+            );
           },
         }}
         component={CardControlsScreen}

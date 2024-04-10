@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, ImageSourcePropType} from 'react-native';
-import {COLORS, FONTS} from '../../theme/common.theme';
+import {COLORS, FONTS} from '../theme/common.theme';
 
 interface TransactionItemProps {
   merchantLogo: ImageSourcePropType; // Replace with ImageSourcePropType for TypeScript if using a local image

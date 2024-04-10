@@ -7,7 +7,7 @@ import {
   ImageSourcePropType,
 } from 'react-native';
 import React from 'react';
-import {COLORS, FONTS, SIZES} from '../../theme/common.theme';
+import {COLORS, FONTS, SIZES} from '../theme/common.theme';
 
 interface CardProps {
   onPress: () => void;

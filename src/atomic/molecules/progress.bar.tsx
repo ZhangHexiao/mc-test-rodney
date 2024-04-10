@@ -1,4 +1,4 @@
-import {COLORS, FONTS} from '../../theme/common.theme';
+import {COLORS, FONTS} from '../theme/common.theme';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 

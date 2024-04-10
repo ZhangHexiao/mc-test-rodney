@@ -28,14 +28,6 @@ export const DashboardStack = () => {
           },
         }}
       />
-
-      {/* <Stack.Screen
-        name="RootTabs"
-        component={RootTabs}
-        options={{
-          headerShown: false,
-        }}
-      /> */}
     </Stack.Navigator>
   );
 };

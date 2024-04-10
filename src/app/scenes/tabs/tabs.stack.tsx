@@ -6,7 +6,7 @@ import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/core';
 import HomeTabScreen from './home.tab.screen';
 import {createStackNavigator} from '@react-navigation/stack';
-import CardControlsScreen from './card.controls.screen';
+import CardControlsScreen from '../card.controls.screen';
 import {NavigationHeader} from '../../../atomic/molecules/navigation.header.component';
 
 export type HomeTabRoutes = {

@@ -5,33 +5,50 @@ import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
 import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/core';
 import HomeTabScreen from './home.tab.screen';
+import {createStackNavigator} from '@react-navigation/stack';
+import CardControlsScreen from './card_controls_screen';
+import {NavigationHeader} from '../../../atomic/atoms/molecules/navigation.header.component';
+
+export type HomeTabRoutes = {
+  HomeTab: undefined;
+  CardDetail: undefined;
+};
+
+const Tab = createBottomTabNavigator();
+const HomeTabStack = createStackNavigator<HomeTabRoutes>();
+
+const HomeTabStackNavigator = () => {
+  return (
+    <HomeTabStack.Navigator>
+      <HomeTabStack.Screen
+        name="HomeTab"
+        options={{
+          header: ({navigation, route, options}) => {
+            const title = 'Cards'; // You can also use route.params to dynamically set the title
+            return <NavigationHeader title={title} />;
+          },
+        }}
+        component={HomeTabScreen}
+      />
+      <HomeTabStack.Screen
+        name="CardDetail"
+        options={{
+          header: ({navigation, route, options}) => {
+            const title = 'Card Controls'; // You can also use route.params to dynamically set the title
+            return <NavigationHeader title={title} />;
+          },
+        }}
+        component={CardControlsScreen}
+      />
+    </HomeTabStack.Navigator>
+  );
+};
 
 export const RootTabs = () => {
-  type RootStackParamList = {
-    Home: {
-      title: string;
-    };
-    Rewards: {
-      title: string;
-    };
-    PFM: {
-      title: string;
-    };
-    More: {
-      title: string;
-    };
-  };
-
-  const Tab = createBottomTabNavigator<RootStackParamList>();
-
-  type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
-
   function PlaceholderTabScreen() {
-    const route = useRoute<HomeScreenRouteProp>();
-    const {title} = route.params;
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>{title}</Text>
+        <Text>Not build</Text>
       </View>
     );
   }
@@ -53,7 +70,7 @@ export const RootTabs = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeTabScreen}
+        component={HomeTabStackNavigator}
         options={{
           title: '',
           tabBarIcon: ({focused}: {focused: boolean}) => {

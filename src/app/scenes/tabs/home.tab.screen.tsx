@@ -12,7 +12,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import {StackScreenProps} from '@react-navigation/stack';
+import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
 import {useTheme} from 'styled-components/native';
 
 import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
@@ -26,9 +26,12 @@ import babelConfig from 'babel.config';
 import {blue} from 'react-native-reanimated';
 import CarOperationModal from '../../../atomic/atoms/organisms/card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
+import {HomeTabRoutes} from './tabs.stack';
 
-//navigation-- add in to {} for doing navigation to card controles
-const HomeTabScreen: React.FC = () => {
+// type HomeTabScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Onboarding'>;
+type ScreenProps = StackScreenProps<HomeTabRoutes, 'HomeTab'>;
+
+const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
   const [cardModalOpen, setCardModalOpen] = useState(false);
   const toggleCardModal = () => setCardModalOpen(!cardModalOpen);
 
@@ -112,6 +115,9 @@ const HomeTabScreen: React.FC = () => {
       <CarOperationModal
         isOpen={cardModalOpen}
         toggleCardModal={toggleCardModal}
+        navigateToControls={() => {
+          navigation.navigate('CardDetail');
+        }}
       />
     </SafeAreaView>
   );

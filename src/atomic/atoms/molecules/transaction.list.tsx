@@ -64,6 +64,7 @@ const RecentTransactions: React.FC = () => {
       <View>
         {recentTransactionsData.map(item => (
           <TransactionItem
+            key={item.id}
             merchantLogo={item.logo}
             merchantName={item.merchant}
             amount={item.amount}

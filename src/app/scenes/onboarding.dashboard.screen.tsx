@@ -20,6 +20,7 @@ import {Button} from '../../atomic/atoms/button/button.component';
 import {InputLabel} from '../../atomic/atoms/button/input.label.component';
 import {Input} from '../../atomic/atoms/button/input.component';
 import LinearGradient from 'react-native-linear-gradient';
+import {HomeTabRoutes} from './tabs/tabs.stack';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 

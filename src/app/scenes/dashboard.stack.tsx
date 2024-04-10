@@ -29,16 +29,13 @@ export const DashboardStack = () => {
         }}
       />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="RootTabs"
         component={RootTabs}
         options={{
-          header: ({navigation, route, options}) => {
-            const title = 'Cards'; // You can also use route.params to dynamically set the title
-            return <NavigationHeader title={title} />;
-          },
+          headerShown: false,
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

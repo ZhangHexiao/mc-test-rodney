@@ -27,8 +27,8 @@ import babelConfig from 'babel.config';
 import {blue} from 'react-native-reanimated';
 import CarOperationModal from '../../atomic/organisms/card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
-import {CardControlsButton} from '../../atomic/atoms/card_controls_button_component';
-import {CardControlsListItem} from '../../atomic/atoms/card_controls_list_item_component';
+import {CardControlsButton} from '../../atomic/atoms/card.controls.button.component';
+import {CardControlsListItem} from '../../atomic/atoms/card.controls.list.item.component';
 
 //navigation-- add in to {} for doing navigation to card controles
 const CardControlsScreen: React.FC = () => {

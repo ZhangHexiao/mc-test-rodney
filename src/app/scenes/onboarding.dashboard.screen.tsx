@@ -21,6 +21,7 @@ import {InputLabel} from '../../atomic/atoms/input.label.component';
 import {Input} from '../../atomic/atoms/input.component';
 import LinearGradient from 'react-native-linear-gradient';
 import {HomeTabRoutes} from './tabs/tabs.stack';
+import ConnectSuccessModal from '../../atomic/organisms/connect.success.modal';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
@@ -85,40 +86,6 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
               }}
               backgroundColor={theme.COLORS.black}
               style={styles.modalBtn}
-            />
-          </View>
-        </View>
-      </Modal>
-    );
-  };
-
-  const connectSuccessModal = () => {
-    return (
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={connectSuccessModalVisible}>
-        <View style={styles.modalContainer}>
-          <View style={{...styles.modalSuccess}}>
-            <LinearGradient
-              colors={['#E35205', '#F98E20']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              style={styles.sucessCircleContainer}>
-              <Image source={icons.successCircle} resizeMode="contain"></Image>
-            </LinearGradient>
-            <View style={{paddingTop: 24}}>
-              <Text style={styles.successTitle}>All Set!</Text>
-              <Text style={styles.subTitle}>Enjoy your digital journey</Text>
-            </View>
-
-            <Button
-              title="View Dashboard"
-              filled
-              onPress={() => {
-                setConnectSuccessModalVisible(false);
-              }}
-              style={styles.modalSuccessBtn}
             />
           </View>
         </View>
@@ -216,7 +183,12 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
         />
       </View>
       {connectProviderModal()}
-      {connectSuccessModal()}
+      <ConnectSuccessModal
+        isOpen={connectSuccessModalVisible}
+        toggleModal={() =>
+          setConnectSuccessModalVisible(!connectSuccessModalVisible)
+        }
+      />
     </SafeAreaView>
   );
 };
@@ -339,42 +311,6 @@ const styles = StyleSheet.create({
     width: SIZES.width * 0.2,
     marginVertical: 22,
     borderRadius: (SIZES.width * 0.2) / 2,
-  },
-
-  // ==================
-  successTitle: {
-    ...FONTS.H4,
-    color: COLORS.black,
-    textAlign: 'center',
-    marginHorizontal: 24,
-    marginVertical: 24,
-    fontWeight: '600',
-  },
-  modalSuccess: {
-    height: 388,
-    width: SIZES.width * 0.8,
-    backgroundColor: COLORS.white,
-    borderRadius: 12,
-    alignItems: 'center',
-    padding: 16,
-  },
-  modalSuccessBtn: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 24,
-  },
-  sucessCircleContainer: {
-    height: 80,
-    width: 80,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-    borderColor: COLORS.white,
-    borderWidth: 8,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    top: -40,
   },
 });
 

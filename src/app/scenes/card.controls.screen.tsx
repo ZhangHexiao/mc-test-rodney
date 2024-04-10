@@ -60,24 +60,28 @@ const CardControlsScreen: React.FC = () => {
       title: 'First Section',
       data: [
         {
+          id: '1',
           icon: icons.faceId,
           label: 'Face ID',
           onPress: () => {},
           details: 'Enabled',
         },
         {
+          id: '2',
           icon: icons.wallet,
           label: 'Apple Wallet',
           onPress: () => {},
           details: 'Open',
         },
         {
+          id: '3',
           icon: icons.recurring,
           label: 'Auto Pay',
           onPress: () => {},
           details: 'Enabled',
         },
         {
+          id: '4',
           icon: icons.leaf,
           label: 'Online Statement',
           onPress: () => {},
@@ -89,12 +93,14 @@ const CardControlsScreen: React.FC = () => {
       title: 'Second Section',
       data: [
         {
+          id: '5',
           icon: icons.zhen,
           label: 'Management Subscriptions',
           onPress: () => {},
           details: '2',
         },
         {
+          id: '6',
           icon: icons.personAdd,
           label: 'Authorizaed Users',
           onPress: () => {},
@@ -106,12 +112,14 @@ const CardControlsScreen: React.FC = () => {
       title: 'Third Section',
       data: [
         {
+          id: '7',
           icon: icons.alertTriangle,
           label: 'Spend Limit Settings',
           onPress: () => {},
           details: '',
         },
         {
+          id: '8',
           icon: icons.globel,
           label: 'Overseas Spend Settings',
           onPress: () => {},
@@ -123,12 +131,14 @@ const CardControlsScreen: React.FC = () => {
       title: 'Forth Section',
       data: [
         {
+          id: '9',
           icon: icons.contactless,
           label: 'Tap & Pay',
           onPress: () => {},
           details: '',
         },
         {
+          id: '10',
           icon: icons.metery,
           label: 'FICO Score',
           onPress: () => {},
@@ -166,7 +176,7 @@ const CardControlsScreen: React.FC = () => {
             </View>
           }
           sections={controlItemList}
-          keyExtractor={(item, index) => item.label + index}
+          keyExtractor={(item, index) => item.id + index}
           renderItem={({item}) => (
             <CardControlsListItem
               icon={item.icon}

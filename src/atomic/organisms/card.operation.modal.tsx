@@ -1,11 +1,10 @@
-import {images, icons} from '../../app/constants/index';
+import {icons} from '../../app/constants/index';
 import {SIZES, FONTS, COLORS} from '../theme/common.theme';
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {
   View,
   StyleSheet,
   Animated,
-  Dimensions,
   TouchableOpacity,
   Text,
   ScrollView,
@@ -13,8 +12,8 @@ import {
 } from 'react-native';
 import ProgressBar from '../molecules/progress.bar';
 import PaymentInfo from '../molecules/payment.info.component';
-import RecentTransactions, {Transaction} from '../molecules/transaction.list';
-import {CardInfo} from '@app/scenes/tabs/home.tab.screen';
+import RecentTransactions, {Transaction} from './transaction.list';
+import {CardInfo} from '../../app/scenes/tabs/home.tab.screen';
 
 const drawerFullHeight = SIZES.height * 0.7;
 

@@ -5,8 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {DashboardStack} from './scenes/dashboard.stack';
 import {RootTabs} from './scenes/tabs/tabs.stack';
-import {NavigationHeader} from '../atomic/molecules/navigation.header.component';
-import CardControlsScreen from './scenes/card.controls.screen';
 
 export type RootRoutes = {
   Dashboard: undefined;

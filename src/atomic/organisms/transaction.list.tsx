@@ -1,14 +1,13 @@
 import React from 'react';
 import {
   View,
-  FlatList,
   StyleSheet,
   Text,
   ImageSourcePropType,
   Image,
   TouchableOpacity,
 } from 'react-native';
-import TransactionItem from '../atoms/transaction.item.component';
+import TransactionItem from '../molecules/transaction.item.component';
 import {icons, images} from '../../app/constants/index';
 import {COLORS, FONTS} from '../theme/common.theme';
 // Make sure the import path is correct

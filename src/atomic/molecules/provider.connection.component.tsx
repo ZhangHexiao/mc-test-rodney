@@ -8,7 +8,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import TransactionItem from '../atoms/transaction.item.component';
+import TransactionItem from './transaction.item.component';
 import {icons, images} from '../../app/constants/index';
 import {Button} from '../atoms/button.component';
 import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';

@@ -19,7 +19,8 @@ export interface ConnectProviderModalProps {
   isOpen: boolean;
   colorThem: string;
   closeModal: () => void;
-  connectProviderAction: () => void;
+  connectProviderAction: () => Promise<void>;
+  isLoading: boolean;
 }
 
 const ConnectProviderModal: React.FC<ConnectProviderModalProps> = ({
@@ -28,6 +29,7 @@ const ConnectProviderModal: React.FC<ConnectProviderModalProps> = ({
   colorThem,
   closeModal,
   connectProviderAction,
+  isLoading,
 }) => {
   const inputChangedHandler = useCallback(
     (inputId: string, inputValue: string) => {},
@@ -74,6 +76,7 @@ const ConnectProviderModal: React.FC<ConnectProviderModalProps> = ({
             onPress={connectProviderAction}
             backgroundColor={COLORS.black}
             style={styles.modalBtn}
+            isLoading={isLoading}
           />
         </View>
       </View>

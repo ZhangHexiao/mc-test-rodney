@@ -1,16 +1,7 @@
-import {
-  View,
-  Text,
-  Dimensions,
-  Platform,
-  Image,
-  StyleSheet,
-} from 'react-native';
-import {images, icons} from '../../constants/index';
+import {View, Text, Platform, Image, StyleSheet} from 'react-native';
+import {icons} from '../../constants/index';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
-import {useRoute} from '@react-navigation/native';
-import {RouteProp} from '@react-navigation/core';
+import {COLORS, FONTS} from '../../../atomic/theme/common.theme';
 import HomeTabScreen from './home.tab.screen';
 import {createStackNavigator} from '@react-navigation/stack';
 import CardControlsScreen from '../card.controls.screen';

@@ -1,14 +1,10 @@
-import React, {useCallback, useMemo, useReducer, useState} from 'react';
+import React, {useState} from 'react';
 import {
   StatusBar,
   Text,
   View,
   StyleSheet,
   SafeAreaView,
-  Image,
-  Modal,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
   ImageSourcePropType,
 } from 'react-native';
 
@@ -22,6 +18,7 @@ import ConnectProviderModal, {
   ConnectProviderModalProps,
 } from '../../atomic/organisms/connect.provider.modal';
 import ProviderConnection from '../../atomic/molecules/provider.connection.component';
+import {simulateAsyncCall} from '../util/utility';
 
 type ScreenProps = StackScreenProps<DashboardRoutes, 'DashboardOnboarding'>;
 
@@ -31,7 +28,8 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       colorTheme: COLORS.black,
       key: 'netflix',
       icon: images.netflix,
-      connectProviderRequest: () => {
+      connectProviderRequest: async () => {
+        await simulateAsyncCall();
         setConnectStatus(preMap => preMap.set('netflix', true));
       },
     },
@@ -39,7 +37,8 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       colorTheme: COLORS.success,
       key: 'spotify',
       icon: images.spotify,
-      connectProviderRequest: () => {
+      connectProviderRequest: async () => {
+        await simulateAsyncCall();
         setConnectStatus(preMap => preMap.set('spotify', true));
       },
     },
@@ -47,7 +46,8 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       colorTheme: COLORS.white,
       key: 'uberEats',
       icon: images.uberEats,
-      connectProviderRequest: () => {
+      connectProviderRequest: async () => {
+        await simulateAsyncCall();
         setConnectStatus(preMap => preMap.set('uberEats', true));
       },
     },
@@ -55,7 +55,8 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       colorTheme: COLORS.success,
       key: 'starbucks',
       icon: images.starbucks,
-      connectProviderRequest: () => {
+      connectProviderRequest: async () => {
+        await simulateAsyncCall();
         setConnectStatus(preMap => preMap.set('starbucks', true));
       },
     },
@@ -71,11 +72,11 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
   );
 
   const [providerInfo, setProviderInfo] = useState<ConnectProviderModalProps>();
-
   const [connectProviderModalVisible, setConnectProviderModalVisible] =
     useState(false);
   const [connectSuccessModalVisible, setConnectSuccessModalVisible] =
     useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const anyConnected = () => {
     return (
@@ -120,6 +121,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
                     setConnectProviderModalVisible(false);
                   },
                   connectProviderAction: item.connectProviderRequest,
+                  isLoading: isLoading,
                 });
               }}
             />
@@ -131,11 +133,14 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
         providerLogo={providerInfo?.providerLogo as ImageSourcePropType}
         colorThem={providerInfo?.colorThem as string}
         isOpen={connectProviderModalVisible}
+        isLoading={isLoading}
         closeModal={() =>
           setConnectProviderModalVisible(!connectProviderModalVisible)
         }
-        connectProviderAction={() => {
-          providerInfo?.connectProviderAction();
+        connectProviderAction={async () => {
+          setIsLoading(true);
+          await providerInfo?.connectProviderAction();
+          setIsLoading(false);
           setConnectProviderModalVisible(!connectProviderModalVisible);
           setConnectSuccessModalVisible(!connectSuccessModalVisible);
         }}

@@ -3,7 +3,7 @@ import {View, StyleSheet, SafeAreaView, SectionList} from 'react-native';
 
 import {icons} from '../constants/index';
 
-import {CardControlsButton} from '../../atomic/atoms/card.controls.button.component';
+import {CardControlsButton} from '../../atomic/molecules/card.controls.button.component';
 import {CardControlsListItem} from '../../atomic/atoms/card.controls.list.item.component';
 const buttonsInfoList = [
   {
@@ -137,7 +137,7 @@ const CardControlsScreen: React.FC = () => {
             </View>
           }
           sections={controlItemList}
-          keyExtractor={(item, index) => item.id + index}
+          keyExtractor={(item, index) => item.id}
           renderItem={({item}) => (
             <CardControlsListItem
               icon={item.icon}

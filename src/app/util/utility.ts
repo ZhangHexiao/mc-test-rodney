@@ -7,10 +7,6 @@ export const formatToCurrency = (amount: number): string => {
   });
 };
 
-/**
- * Simulates a FaceID check using the device's biometric prompt.
- * @returns {Promise<string>} The result of the biometric check.
- */
 export const simulateFaceID = async (): Promise<string> => {
   const rnBiometrics = new ReactNativeBiometrics();
   try {
@@ -31,3 +27,16 @@ export const simulateFaceID = async (): Promise<string> => {
     return 'Authenticated Successfully [Forced True]';
   }
 };
+
+export function simulateAsyncCall() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const shouldFail = false; // Change this to true to simulate an error
+      if (shouldFail) {
+        reject(new Error('Failed due to network error'));
+      } else {
+        resolve('Data fetched successfully');
+      }
+    }, 2000);
+  });
+}

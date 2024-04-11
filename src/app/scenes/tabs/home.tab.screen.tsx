@@ -1,11 +1,4 @@
-import React, {
-  FC,
-  Fragment,
-  useCallback,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
+import React, {useState} from 'react';
 import {
   StatusBar,
   Text,
@@ -13,32 +6,21 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
-  Modal,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
   FlatList,
   ImageSourcePropType,
 } from 'react-native';
 
-import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
-import {useTheme} from 'styled-components/native';
-
+import {StackScreenProps} from '@react-navigation/stack';
 import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
-import {images, icons} from '../../constants/index';
+import {images} from '../../constants/index';
 import {Button} from '../../../atomic/atoms/button.component';
-import {InputLabel} from '../../../atomic/atoms/input.label.component';
-import {Input} from '../../../atomic/atoms/input.component';
-import LinearGradient from 'react-native-linear-gradient';
 import Card from '../../../atomic/molecules/card';
-import babelConfig from 'babel.config';
-import {blue} from 'react-native-reanimated';
 import CarOperationModal from '../../../atomic/organisms/card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
 import {HomeTabRoutes} from './tabs.stack';
-import {Transaction} from '../../../atomic/molecules/transaction.list';
+import {Transaction} from '../../../atomic/organisms/transaction.list';
 import {PaymentInfoProps} from '../../../atomic/molecules/payment.info.component';
 import {creditStatue} from '../../../atomic/molecules/progress.bar';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {simulateFaceID} from '../../../app/util/utility';
 type ScreenProps = StackScreenProps<HomeTabRoutes, 'HomeTab'>;
 
@@ -131,7 +113,7 @@ let userCards: CardInfo[] = [
 
 const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
   let selectedCardIndex = 0;
-  const [cardModalOpen, setCardModalOpen] = useState(false);
+  const [cardModalOpen, setCardModalOpen] = useState(true);
   const toggleCardModal = () => setCardModalOpen(pre => !pre);
   const [selectedCard, setSelectedCard] = useState<CardInfo>(
     userCards[selectedCardIndex],

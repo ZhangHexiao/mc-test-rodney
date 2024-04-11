@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, SIZES} from '../theme/common.theme';
-import {CardInfo} from '@app/scenes/tabs/home.tab.screen';
+import {CardInfo} from '../../app/scenes/tabs/home.tab.screen';
 import {icons} from '../../app/constants/index';
 
 interface CardProps {

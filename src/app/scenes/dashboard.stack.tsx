@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import OnboardingDashboardScreen from './onboarding.dashboard.screen';
 import {NavigationHeader} from '../../atomic/molecules/navigation.header.component';
-import {RootTabs} from './tabs/tabs.stack';
 
 export type DashboardRoutes = {
   DashboardOnboarding: undefined;

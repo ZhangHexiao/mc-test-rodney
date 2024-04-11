@@ -164,7 +164,7 @@ const CardControlsScreen: React.FC = () => {
             </View>
           }
           sections={controlItemList}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item, index) => item.id + index}
           renderItem={({item}) => (
             <CardControlsListItem
               icon={item.icon}

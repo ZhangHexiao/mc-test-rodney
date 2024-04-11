@@ -1,12 +1,12 @@
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Image} from 'react-native';
 import React from 'react';
 import {COLORS, SIZES} from '../theme/common.theme';
+import {icons} from '../../app/constants/index';
 
 interface InputProps {
   id: string;
   placeholder?: string;
   placeholderTextColor?: string;
-  errorText?: string[];
   style?: object;
   secureTextEntry?: boolean;
   onInputChanged: (id: string, text: string) => void;
@@ -23,7 +23,7 @@ export const Input: React.FC<InputProps> = props => {
         style={{
           ...styles.inputContainer,
           ...{borderColor: COLORS.black},
-          ...(props.style as object),
+          ...props.style,
         }}>
         <TextInput
           {...props}
@@ -33,12 +33,10 @@ export const Input: React.FC<InputProps> = props => {
           placeholderTextColor={props.placeholderTextColor}
           secureTextEntry={props.secureTextEntry}
         />
+        {props.secureTextEntry && (
+          <Image source={icons.eyeOff} style={styles.icon} />
+        )}
       </View>
-      {props.errorText && (
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{props.errorText}</Text>
-        </View>
-      )}
     </View>
   );
 };
@@ -61,6 +59,8 @@ const styles = StyleSheet.create({
     height: 48,
   },
   icon: {
+    width: 24,
+    height: 24,
     marginRight: 10,
   },
   input: {
@@ -68,12 +68,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 0,
     textAlignVertical: 'top',
-  },
-  errorContainer: {
-    marginVertical: 4,
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 12,
   },
 });

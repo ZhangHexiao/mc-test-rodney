@@ -11,6 +11,7 @@ const Icons = {
   rightArrow: require('../../assets/icons/arrow_right.png'),
   leftArrow: require('../../assets/icons/arrow_left.png'),
   lock: require('../../assets/icons/lock.png'),
+  eyeOff: require('../../assets/icons/eye_off.png'),
 
   // ----for Card controls button---
   bell: require('../../assets/icons/bell.png'),

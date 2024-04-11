@@ -112,7 +112,7 @@ let userCards: CardInfo[] = [
 ];
 
 const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
-  let selectedCardIndex = 0;
+  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
   const [cardModalOpen, setCardModalOpen] = useState(true);
   const toggleCardModal = () => setCardModalOpen(pre => !pre);
   const [selectedCard, setSelectedCard] = useState<CardInfo>(
@@ -148,7 +148,7 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
               renderItem={({index, item}) => (
                 <Card
                   onPressCard={() => {
-                    selectedCardIndex = index;
+                    setSelectedCardIndex(index);
                     toggleCardModal();
                     setSelectedCard(userCards[index]);
                   }}

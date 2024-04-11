@@ -16,7 +16,7 @@ import PaymentInfo from '../molecules/payment.info.component';
 import RecentTransactions, {Transaction} from '../molecules/transaction.list';
 import {CardInfo} from '@app/scenes/tabs/home.tab.screen';
 
-const drawerFullHeight = SIZES.height * 0.75;
+const drawerFullHeight = SIZES.height * 0.7;
 
 interface CarOperationModalProps {
   isOpen: boolean;
@@ -59,7 +59,7 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
 
             <TouchableOpacity
               style={styles.operationIconsContainer}
-              onPress={toggleCardModal}>
+              onPress={lockCard}>
               <Image
                 style={styles.operationIcon}
                 source={icons.cardLock}

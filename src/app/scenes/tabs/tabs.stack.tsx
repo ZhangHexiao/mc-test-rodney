@@ -1,4 +1,11 @@
-import {View, Text, Dimensions, Platform, Image} from 'react-native';
+import {
+  View,
+  Text,
+  Dimensions,
+  Platform,
+  Image,
+  StyleSheet,
+} from 'react-native';
 import {images, icons} from '../../constants/index';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {COLORS, FONTS, SIZES} from '../../../atomic/theme/common.theme';
@@ -11,7 +18,7 @@ import {NavigationHeader} from '../../../atomic/molecules/navigation.header.comp
 
 export type HomeTabRoutes = {
   HomeTab: undefined;
-  CardDetail: undefined;
+  CardControls: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -24,17 +31,17 @@ const HomeTabStackNavigator = () => {
         name="HomeTab"
         options={{
           header: ({navigation, route, options}) => {
-            const title = 'Cards'; // You can also use route.params to dynamically set the title
+            const title = 'Cards';
             return <NavigationHeader title={title} />;
           },
         }}
         component={HomeTabScreen}
       />
       <HomeTabStack.Screen
-        name="CardDetail"
+        name="CardControls"
         options={{
           header: ({navigation, route, options}) => {
-            const title = 'Card Controls'; // You can also use route.params to dynamically set the title
+            const title = 'Card Controls';
             return (
               <NavigationHeader
                 title={title}
@@ -81,26 +88,19 @@ export const RootTabs = () => {
           title: '',
           tabBarIcon: ({focused}: {focused: boolean}) => {
             return (
-              <View
-                style={{
-                  alignItems: 'center',
-                  paddingTop: 16,
-                }}>
+              <View style={styles.iconContainer}>
                 <Image
                   source={focused ? icons.tabIconFilled : icons.tabIcon}
                   resizeMode="contain"
                   style={{
-                    width: 24,
-                    height: 24,
+                    ...styles.icon,
                     tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
-                    fontSize: 12,
-                    fontFamily: 'regular',
+                    ...styles.tabBarLabel,
                     color: focused ? COLORS.primary : COLORS.grey400,
-                    marginTop: 4,
                   }}>
                   Home
                 </Text>
@@ -117,26 +117,19 @@ export const RootTabs = () => {
           title: '',
           tabBarIcon: ({focused}: {focused: boolean}) => {
             return (
-              <View
-                style={{
-                  alignItems: 'center',
-                  paddingTop: 16,
-                }}>
+              <View style={styles.iconContainer}>
                 <Image
                   source={focused ? icons.tabIconFilled : icons.tabIcon}
                   resizeMode="contain"
                   style={{
-                    width: 24,
-                    height: 24,
+                    ...styles.icon,
                     tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
-                    fontSize: 12,
-                    fontFamily: 'regular',
+                    ...styles.tabBarLabel,
                     color: focused ? COLORS.primary : COLORS.grey400,
-                    marginTop: 4,
                   }}>
                   Rewards
                 </Text>
@@ -153,26 +146,19 @@ export const RootTabs = () => {
           title: '',
           tabBarIcon: ({focused}: {focused: boolean}) => {
             return (
-              <View
-                style={{
-                  alignItems: 'center',
-                  paddingTop: 16,
-                }}>
+              <View style={styles.iconContainer}>
                 <Image
                   source={focused ? icons.tabIconFilled : icons.tabIcon}
                   resizeMode="contain"
                   style={{
-                    width: 24,
-                    height: 24,
+                    ...styles.icon,
                     tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
-                    fontSize: 12,
-                    fontFamily: 'regular',
+                    ...styles.tabBarLabel,
                     color: focused ? COLORS.primary : COLORS.grey400,
-                    marginTop: 4,
                   }}>
                   PFM
                 </Text>
@@ -189,26 +175,19 @@ export const RootTabs = () => {
           title: '',
           tabBarIcon: ({focused}: {focused: boolean}) => {
             return (
-              <View
-                style={{
-                  alignItems: 'center',
-                  paddingTop: 16,
-                }}>
+              <View style={styles.iconContainer}>
                 <Image
                   source={focused ? icons.tabIconFilled : icons.tabIcon}
                   resizeMode="contain"
                   style={{
-                    width: 24,
-                    height: 24,
+                    ...styles.icon,
                     tintColor: focused ? COLORS.primary : COLORS.grey400,
                   }}
                 />
                 <Text
                   style={{
-                    fontSize: 12,
-                    fontFamily: 'regular',
+                    ...styles.tabBarLabel,
                     color: focused ? COLORS.primary : COLORS.grey400,
-                    marginTop: 4,
                   }}>
                   More
                 </Text>
@@ -220,3 +199,18 @@ export const RootTabs = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    alignItems: 'center',
+    paddingTop: 16,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  tabBarLabel: {
+    ...FONTS.Label,
+    marginTop: 4,
+  },
+});

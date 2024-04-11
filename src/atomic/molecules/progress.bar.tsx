@@ -1,3 +1,4 @@
+import {formatToCurrency} from '../../app/util/currency.formater';
 import {COLORS, FONTS} from '../theme/common.theme';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
@@ -16,7 +17,9 @@ const ProgressBar: React.FC<creditStatue> = ({
   return (
     <View style={styles.card}>
       <View style={styles.balanceRow}>
-        <Text style={styles.balanceNumber}>${currentBalance.toFixed(2)}</Text>
+        <Text style={styles.balanceNumber}>
+          {formatToCurrency(currentBalance)}
+        </Text>
         <Text style={styles.balanceText}>Current Balance</Text>
       </View>
 
@@ -26,12 +29,12 @@ const ProgressBar: React.FC<creditStatue> = ({
       <View style={styles.creditDetails}>
         <Text style={styles.label}>Available Credit:</Text>
         <Text style={styles.label}>
-          ${(totalCreditLimit - currentBalance).toFixed(2)}
+          {formatToCurrency(totalCreditLimit - currentBalance)}
         </Text>
       </View>
       <View style={styles.creditDetails}>
         <Text style={styles.label}>Total Credit Limit:</Text>
-        <Text style={styles.label}>${totalCreditLimit.toFixed(2)}</Text>
+        <Text style={styles.label}>{formatToCurrency(totalCreditLimit)}</Text>
       </View>
     </View>
   );

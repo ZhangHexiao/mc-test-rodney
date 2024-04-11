@@ -39,7 +39,6 @@ import {Transaction} from '../../../atomic/molecules/transaction.list';
 import {PaymentInfoProps} from '../../../atomic/molecules/payment.info.component';
 import {creditStatue} from '../../../atomic/molecules/progress.bar';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// type HomeTabScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Onboarding'>;
 type ScreenProps = StackScreenProps<HomeTabRoutes, 'HomeTab'>;
 
 export interface CardInfo {
@@ -136,12 +135,6 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
   const [selectedCard, setSelectedCard] = useState<CardInfo>(
     userCards[selectedCardIndex],
   );
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <Image source={icons.bell}></Image>,
-    });
-  }, [navigation]);
 
   return (
     <SafeAreaView style={styles.container}>

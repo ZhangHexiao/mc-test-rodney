@@ -58,13 +58,13 @@ const HomeTabStackNavigator = () => {
 };
 
 export const RootTabs = () => {
-  function PlaceholderTabScreen() {
+  const PlaceholderTabScreen = (): JSX.Element => {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Not build</Text>
       </View>
     );
-  }
+  };
   return (
     <Tab.Navigator
       screenOptions={{

@@ -62,9 +62,11 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
               onPress={lockCard}>
               <Image
                 style={styles.operationIcon}
-                source={icons.cardLock}
+                source={cardInfo.isLocked ? icons.cardLockFill : icons.cardLock}
                 resizeMode="contain"></Image>
-              <Text style={styles.iconText}>Lock Card</Text>
+              <Text style={styles.iconText}>
+                {cardInfo.isLocked ? 'Locked' : 'Lock Card'}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.operationIconsContainer}

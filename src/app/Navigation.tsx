@@ -15,7 +15,7 @@ export type RootRoutes = {
 
 const Stack = createStackNavigator<RootRoutes>();
 
-function Navigation(): ReactElement {
+const Navigation = (): ReactElement => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -40,6 +40,6 @@ function Navigation(): ReactElement {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default Navigation;

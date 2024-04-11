@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {COLORS, FONTS, SIZES} from '../theme/common.theme';
 import {Button} from '../../atomic/atoms/button.component';
+import {formatToCurrency} from '../../app/util/currency.formater';
 
 export interface PaymentInfoProps {
   statementBalance: number;
@@ -23,14 +24,16 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({
       <View style={styles.amountsContainer}>
         <View style={styles.amountContainer}>
           <Text style={styles.label}>Statement Balance</Text>
-          <Text style={styles.amount}>${statementBalance.toFixed(2)}</Text>
+          <Text style={styles.amount}>
+            {formatToCurrency(statementBalance)}
+          </Text>
         </View>
 
         <View style={styles.separator} />
 
         <View style={styles.amountContainer}>
           <Text style={styles.label}>Minimum Payment</Text>
-          <Text style={styles.amount}>${minimumPayment.toFixed(2)}</Text>
+          <Text style={styles.amount}> {formatToCurrency(minimumPayment)}</Text>
         </View>
       </View>
       <View style={styles.btnContainer}>

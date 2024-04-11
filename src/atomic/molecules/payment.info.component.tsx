@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {COLORS, FONTS, SIZES} from '../theme/common.theme';
 import {Button} from '../../atomic/atoms/button.component';
 
-interface PaymentInfoProps {
+export interface PaymentInfoProps {
   statementBalance: number;
   minimumPayment: number;
   dueInDays: number;

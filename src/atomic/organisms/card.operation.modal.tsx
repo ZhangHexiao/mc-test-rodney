@@ -14,6 +14,7 @@ import {
 import ProgressBar from '../molecules/progress.bar';
 import PaymentInfo from '../molecules/payment.info.component';
 import RecentTransactions, {Transaction} from '../molecules/transaction.list';
+import {CardInfo} from '@app/scenes/tabs/home.tab.screen';
 
 const drawerFullHeight = SIZES.height * 0.75;
 
@@ -21,43 +22,21 @@ interface CarOperationModalProps {
   isOpen: boolean;
   toggleCardModal: () => void;
   navigateToControls: () => void;
+  lockCard: () => void;
+  cardInfo: CardInfo;
 }
 const CarOperationModal: React.FC<CarOperationModalProps> = ({
   isOpen,
   toggleCardModal,
   navigateToControls,
+  lockCard,
+  cardInfo,
 }) => {
-  const animatedHeight = useRef(new Animated.Value(0)).current;
+  const animatedHeight = useRef(new Animated.Value(drawerFullHeight)).current;
 
-  const recentTransactionsData: Transaction[] = [
-    {
-      id: '1',
-      logo: images.starbucksAvatar,
-      merchant: 'Starbucks',
-      amount: 5.43,
-      points: 5,
-      date: '2021-10-12 08:23AM',
-    },
-    {
-      id: '2',
-      logo: images.amazonAvatar,
-      merchant: 'Amazon',
-      amount: 125.3,
-      points: 125,
-      date: '2021-10-12 08:23AM',
-    },
-    {
-      id: '3',
-      logo: images.ddAvatar,
-      merchant: 'Dunkin Donuts',
-      amount: 10.84,
-      points: 10,
-      date: '2021-10-12 08:23AM',
-    },
-  ];
   useEffect(() => {
     Animated.timing(animatedHeight, {
-      toValue: isOpen ? 0 : drawerFullHeight,
+      toValue: isOpen ? drawerFullHeight : 0,
       duration: 500,
       useNativeDriver: false,
     }).start();
@@ -68,43 +47,43 @@ const CarOperationModal: React.FC<CarOperationModalProps> = ({
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={styles.operationIconsRow}>
-            <View style={styles.operationIconsContainer}>
-              <TouchableOpacity onPress={navigateToControls}>
-                <Image
-                  style={styles.operationIcon}
-                  source={icons.cardControl}
-                  resizeMode="contain"></Image>
-                <Text style={styles.iconText}>Controls</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.operationIconsContainer}>
+            <TouchableOpacity
+              style={styles.operationIconsContainer}
+              onPress={navigateToControls}>
+              <Image
+                style={styles.operationIcon}
+                source={icons.cardControl}
+                resizeMode="contain"></Image>
+              <Text style={styles.iconText}>Controls</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.operationIconsContainer}
+              onPress={toggleCardModal}>
               <Image
                 style={styles.operationIcon}
                 source={icons.cardLock}
                 resizeMode="contain"></Image>
               <Text style={styles.iconText}>Lock Card</Text>
-            </View>
-            <View style={styles.operationIconsContainer}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.operationIconsContainer}
+              onPress={toggleCardModal}>
               <Image
                 style={styles.operationIcon}
                 source={icons.cardDetail}
                 resizeMode="contain"></Image>
               <Text style={styles.iconText}>Card Details</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.section}>
-            <ProgressBar currentBalance={1000} totalCreditLimit={10000} />
+            <ProgressBar {...cardInfo.creditStatus} />
             <View style={styles.creditRow}></View>
           </View>
           <View style={styles.section}>
-            <PaymentInfo
-              statementBalance={600}
-              minimumPayment={60}
-              dueInDays={5}
-              onMakePayment={() => {}}
-            />
+            <PaymentInfo {...cardInfo.paymentInfo} />
           </View>
-          <RecentTransactions transactions={recentTransactionsData} />
+          <RecentTransactions transactions={cardInfo.transaction} />
         </View>
       </ScrollView>
     </Animated.View>
@@ -155,8 +134,6 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 16,
     backgroundColor: COLORS.white,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   creditRow: {

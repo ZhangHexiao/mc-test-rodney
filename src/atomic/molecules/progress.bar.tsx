@@ -2,12 +2,12 @@ import {COLORS, FONTS} from '../theme/common.theme';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-interface ProgressBarProps {
+export interface creditStatue {
   currentBalance: number;
   totalCreditLimit: number;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({
+const ProgressBar: React.FC<creditStatue> = ({
   currentBalance,
   totalCreditLimit,
 }) => {

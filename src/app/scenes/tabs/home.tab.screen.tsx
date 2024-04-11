@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   FlatList,
+  ImageSourcePropType,
 } from 'react-native';
 
 import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
@@ -27,24 +28,102 @@ import {blue} from 'react-native-reanimated';
 import CarOperationModal from '../../../atomic/organisms/card.operation.modal';
 import {ScrollView} from 'react-native-gesture-handler';
 import {HomeTabRoutes} from './tabs.stack';
+import {Transaction} from '../../../atomic/molecules/transaction.list';
+import {PaymentInfoProps} from '../../../atomic/molecules/payment.info.component';
+import {creditStatue} from '../../../atomic/molecules/progress.bar';
 
 // type HomeTabScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Onboarding'>;
 type ScreenProps = StackScreenProps<HomeTabRoutes, 'HomeTab'>;
 
-const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
-  const [cardModalOpen, setCardModalOpen] = useState(false);
-  const toggleCardModal = () => setCardModalOpen(!cardModalOpen);
+export interface CardInfo {
+  cardNumberDisplay: string;
+  cardNumber: string;
+  expDate: string;
+  CVC: string;
+  cardType: ImageSourcePropType;
+  transaction: Transaction[];
+  paymentInfo: PaymentInfoProps;
+  creditStatus: creditStatue;
+}
 
-  const userCards = [
+const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
+  const userCards: CardInfo[] = [
     {
-      cardNumber: 'Mastercard •••• 1234',
+      cardNumberDisplay: 'Mastercard •••• 1234',
+      cardNumber: '5426123456781234',
+      expDate: '09/25',
+      CVC: '242',
       cardType: images.cardType1,
+      transaction: [
+        {
+          id: '1',
+          logo: images.starbucksAvatar,
+          merchant: 'Starbucks',
+          amount: 5.43,
+          points: 5,
+          date: '2021-10-12 08:23AM',
+        },
+        {
+          id: '2',
+          logo: images.amazonAvatar,
+          merchant: 'Amazon',
+          amount: 125.3,
+          points: 125,
+          date: '2021-10-12 08:23AM',
+        },
+        {
+          id: '3',
+          logo: images.ddAvatar,
+          merchant: 'Dunkin Donuts',
+          amount: 10.84,
+          points: 10,
+          date: '2021-10-12 08:23AM',
+        },
+      ],
+      paymentInfo: {
+        statementBalance: 600,
+        minimumPayment: 60,
+        dueInDays: 5,
+        onMakePayment: () => {},
+      },
+      creditStatus: {
+        currentBalance: 1000,
+        totalCreditLimit: 10000,
+      },
     },
     {
-      cardNumber: 'Mastercard •••• 4567',
+      cardNumberDisplay: 'Mastercard •••• 4567',
+      cardNumber: '5426123456784567',
+      expDate: '09/29',
+      CVC: '243',
       cardType: images.cardType1,
+      transaction: [
+        {
+          id: '1',
+          logo: images.starbucksAvatar,
+          merchant: 'Starbucks',
+          amount: 5.43,
+          points: 5,
+          date: '2021-10-12 08:23AM',
+        },
+      ],
+      paymentInfo: {
+        statementBalance: 900,
+        minimumPayment: 90,
+        dueInDays: 15,
+        onMakePayment: () => {},
+      },
+      creditStatus: {
+        currentBalance: 190,
+        totalCreditLimit: 2000,
+      },
     },
   ];
+
+  const [cardModalOpen, setCardModalOpen] = useState(true);
+  const toggleCardModal = () => setCardModalOpen(!cardModalOpen);
+  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -60,6 +139,7 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
             <FlatList
               horizontal
               data={userCards}
+              scrollEnabled={!cardModalOpen}
               snapToAlignment="center"
               keyExtractor={(item, index) => index.toString()}
               contentInset={{
@@ -70,16 +150,16 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
               snapToInterval={260}
               decelerationRate="fast"
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) => (
+              renderItem={({index, item}) => (
                 <Card
-                  cardNumber={item.cardNumber}
-                  cardType={item.cardType}
+                  isLocked={true}
                   onPress={toggleCardModal}
+                  disablePress={cardModalOpen}
+                  cardInfo={item}
                 />
               )}
             />
           </View>
-
           <View style={styles.walletIconContainer}>
             <Image
               style={styles.walletStyle}
@@ -88,12 +168,16 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
           </View>
           <View style={styles.cardDetailContainer}>
             <Text style={styles.cardNumberTitle}>Card Number</Text>
-            <Text style={styles.cardNumber}>5426123456781234</Text>
+            <Text style={styles.cardNumber}>
+              {userCards[selectedCardIndex].cardNumber}
+            </Text>
           </View>
           <View style={styles.cardInfoContainer}>
             <View style={{flex: 2, paddingLeft: 48}}>
               <Text style={styles.cardNumberTitle}>Expiration Date</Text>
-              <Text style={styles.cardNumber}>09/25</Text>
+              <Text style={styles.cardNumber}>
+                {userCards[selectedCardIndex].expDate}
+              </Text>
             </View>
             <View
               style={{
@@ -103,7 +187,9 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
                 borderLeftWidth: 1.5,
               }}>
               <Text style={styles.cardNumberTitle}>CVC</Text>
-              <Text style={styles.cardNumber}>242</Text>
+              <Text style={styles.cardNumber}>
+                {userCards[selectedCardIndex].CVC}
+              </Text>
             </View>
           </View>
           <Button
@@ -115,9 +201,11 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
       <CarOperationModal
         isOpen={cardModalOpen}
         toggleCardModal={toggleCardModal}
+        lockCard={() => {}}
         navigateToControls={() => {
           navigation.navigate('CardDetail');
         }}
+        cardInfo={userCards[selectedCardIndex]}
       />
     </SafeAreaView>
   );

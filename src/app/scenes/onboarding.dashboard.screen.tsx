@@ -1,4 +1,4 @@
-import React, {useCallback, useReducer, useState} from 'react';
+import React, {useCallback, useMemo, useReducer, useState} from 'react';
 import {
   StatusBar,
   Text,
@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 import {StackScreenProps} from '@react-navigation/stack';
-import {useTheme} from 'styled-components/native';
 import {DashboardRoutes} from './dashboard.stack';
 import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
 import {images, icons} from '../constants/index';
@@ -41,7 +40,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       key: 'spotify',
       icon: images.spotify,
       connectProviderRequest: () => {
-        setConnectStatus(preMap => preMap.set('netflix', true));
+        setConnectStatus(preMap => preMap.set('spotify', true));
       },
     },
     {
@@ -49,7 +48,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       key: 'uberEats',
       icon: images.uberEats,
       connectProviderRequest: () => {
-        setConnectStatus(preMap => preMap.set('netflix', true));
+        setConnectStatus(preMap => preMap.set('uberEats', true));
       },
     },
     {
@@ -57,7 +56,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
       key: 'starbucks',
       icon: images.starbucks,
       connectProviderRequest: () => {
-        setConnectStatus(preMap => preMap.set('netflix', true));
+        setConnectStatus(preMap => preMap.set('starbucks', true));
       },
     },
   ];
@@ -65,8 +64,8 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
   const [connectStatus, setConnectStatus] = useState(
     new Map<string, boolean>([
       ['netflix', false],
-      ['spotify', true],
-      ['uberEats', true],
+      ['spotify', false],
+      ['uberEats', false],
       ['starbucks', false],
     ]),
   );
@@ -77,6 +76,16 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
     useState(false);
   const [connectSuccessModalVisible, setConnectSuccessModalVisible] =
     useState(false);
+
+  const anyConnected = () => {
+    return (
+      connectStatus.get('spotify') ||
+      connectStatus.get('netflix') ||
+      connectStatus.get('uberEats') ||
+      connectStatus.get('starbucks')
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -98,6 +107,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
         {providerList.map(item => {
           return (
             <ProviderConnection
+              key={item.key}
               logo={item.icon}
               isConnected={connectStatus.get(item.key) as boolean}
               onPressConnect={() => {
@@ -116,23 +126,7 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
           );
         })}
       </View>
-      <View style={styles.footer}>
-        <Button
-          style={{marginVertical: 8}}
-          title="Continue"
-          filled
-          disable
-          backgroundColor={COLORS.grey200}
-          onPress={() => {}}
-        />
-        <Button
-          style={{marginVertical: 8}}
-          title="Skip for now"
-          onPress={() => {
-            navigation.navigate('RootTabs');
-          }}
-        />
-      </View>
+
       <ConnectProviderModal
         providerLogo={providerInfo?.providerLogo as ImageSourcePropType}
         colorThem={providerInfo?.colorThem as string}
@@ -152,6 +146,26 @@ const OnboardingDashboardScreen: React.FC<ScreenProps> = ({navigation}) => {
           setConnectSuccessModalVisible(!connectSuccessModalVisible)
         }
       />
+
+      <View style={styles.footer}>
+        <Button
+          style={{marginVertical: 8}}
+          title="Continue"
+          filled
+          disable={!anyConnected()}
+          backgroundColor={anyConnected() ? COLORS.primary : COLORS.grey200}
+          onPress={() => {
+            navigation.navigate('RootTabs');
+          }}
+        />
+        <Button
+          style={{marginVertical: 8}}
+          title="Skip for now"
+          onPress={() => {
+            navigation.navigate('RootTabs');
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };

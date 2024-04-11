@@ -148,18 +148,6 @@ const CardControlsScreen: React.FC = () => {
     },
   ];
 
-  const DATA = [
-    {
-      title: 'First Section',
-      data: ['Item 1', 'Item 2'],
-    },
-    {
-      title: 'Second Section',
-      data: ['Item 3', 'Item 4'],
-    },
-    // ... more sections
-  ];
-
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -176,7 +164,7 @@ const CardControlsScreen: React.FC = () => {
             </View>
           }
           sections={controlItemList}
-          keyExtractor={(item, index) => item.id + index}
+          keyExtractor={(item, index) => item.id}
           renderItem={({item}) => (
             <CardControlsListItem
               icon={item.icon}

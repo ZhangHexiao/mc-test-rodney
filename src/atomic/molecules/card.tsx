@@ -8,29 +8,33 @@ import {
 } from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, SIZES} from '../theme/common.theme';
+import {CardInfo} from '@app/scenes/tabs/home.tab.screen';
 
 interface CardProps {
   onPress: () => void;
-  cardNumber: String;
-  cardType: ImageSourcePropType;
   containerStyle?: object;
+  isLocked: boolean;
+  disablePress: boolean;
+  cardInfo: CardInfo;
 }
 const Card: React.FC<CardProps> = ({
   onPress,
-  cardNumber,
-  cardType,
   containerStyle,
+  isLocked,
+  disablePress,
+  cardInfo,
 }) => {
   return (
     <View>
       <View style={styles.subTitleContainer}>
-        <Text style={styles.subTitle}>{cardNumber}</Text>
+        <Text style={styles.subTitle}>{cardInfo.cardNumber}</Text>
       </View>
       <TouchableOpacity
+        disabled={disablePress}
         onPress={onPress}
         style={[styles.container, containerStyle]}>
         <Image
-          source={cardType}
+          source={cardInfo.cardType}
           resizeMode="contain"
           style={styles.cardStyle}
         />

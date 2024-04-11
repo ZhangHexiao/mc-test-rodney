@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 20,
   },
-  // ================
   operationIconsRow: {
     flexDirection: 'row',
     padding: 32,
@@ -130,7 +129,6 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     textAlign: 'center',
   },
-  // ================
   section: {
     flex: 1,
     width: '100%',

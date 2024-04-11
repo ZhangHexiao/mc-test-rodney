@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {COLORS, FONTS, SIZES} from '../theme/common.theme';
 import {Button} from '../../atomic/atoms/button.component';
-import {formatToCurrency} from '../../app/util/currency.formater';
+import {formatToCurrency} from '../../app/util/utility';
 
 export interface PaymentInfoProps {
   statementBalance: number;

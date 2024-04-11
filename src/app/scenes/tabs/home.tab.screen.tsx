@@ -39,6 +39,7 @@ import {Transaction} from '../../../atomic/molecules/transaction.list';
 import {PaymentInfoProps} from '../../../atomic/molecules/payment.info.component';
 import {creditStatue} from '../../../atomic/molecules/progress.bar';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {simulateFaceID} from '../../../app/util/utility';
 type ScreenProps = StackScreenProps<HomeTabRoutes, 'HomeTab'>;
 
 export interface CardInfo {
@@ -130,8 +131,8 @@ let userCards: CardInfo[] = [
 
 const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
   let selectedCardIndex = 0;
-  const [cardModalOpen, setCardModalOpen] = useState(true);
-  const toggleCardModal = () => setCardModalOpen(!cardModalOpen);
+  const [cardModalOpen, setCardModalOpen] = useState(false);
+  const toggleCardModal = () => setCardModalOpen(pre => !pre);
   const [selectedCard, setSelectedCard] = useState<CardInfo>(
     userCards[selectedCardIndex],
   );
@@ -209,12 +210,17 @@ const HomeTabScreen: React.FC<ScreenProps> = ({navigation}) => {
       </ScrollView>
       <CarOperationModal
         isOpen={cardModalOpen}
-        toggleCardModal={toggleCardModal}
+        toggleCardModal={async () => {
+          console.log('1');
+          await simulateFaceID();
+          toggleCardModal();
+        }}
         cardInfo={selectedCard}
         navigateToControls={() => {
           navigation.navigate('CardControls');
         }}
-        lockCard={() => {
+        lockCard={async () => {
+          await simulateFaceID();
           userCards[selectedCardIndex] = {
             ...userCards[selectedCardIndex],
             isLocked: !userCards[selectedCardIndex].isLocked,

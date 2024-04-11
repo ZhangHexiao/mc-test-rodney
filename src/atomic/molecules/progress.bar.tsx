@@ -1,4 +1,4 @@
-import {formatToCurrency} from '../../app/util/currency.formater';
+import {formatToCurrency} from '../../app/util/utility';
 import {COLORS, FONTS} from '../theme/common.theme';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';

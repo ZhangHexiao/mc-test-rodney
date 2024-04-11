@@ -129,6 +129,7 @@ const CardControlsScreen: React.FC = () => {
             <View style={styles.buttonContainer}>
               {buttonsInfoList.map(item => (
                 <CardControlsButton
+                  key={item.label}
                   icon={item.icon}
                   label={item.label}
                   onPress={item.onPress}
@@ -137,7 +138,7 @@ const CardControlsScreen: React.FC = () => {
             </View>
           }
           sections={controlItemList}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item, index) => item.id + item.label}
           renderItem={({item}) => (
             <CardControlsListItem
               icon={item.icon}

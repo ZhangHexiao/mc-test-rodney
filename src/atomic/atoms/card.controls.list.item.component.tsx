@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {images, icons} from '../../app/constants/index';
-import {COLORS, SIZES, FONTS} from '../theme/common.theme';
+import {icons} from '../../app/constants/index';
+import {COLORS, FONTS} from '../theme/common.theme';
 
 interface CardControlsListItemProps {
   icon: ImageSourcePropType;

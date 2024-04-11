@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import TransactionItem from '../molecules/transaction.item.component';
-import {icons, images} from '../../app/constants/index';
+import {icons} from '../../app/constants/index';
 import {COLORS, FONTS} from '../theme/common.theme';
 // Make sure the import path is correct
 

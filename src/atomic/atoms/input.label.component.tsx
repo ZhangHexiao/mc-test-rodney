@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {COLORS, FONTS, SIZES} from '../theme/common.theme';
+import {COLORS, FONTS} from '../theme/common.theme';
 
 interface InputLabelProps {
   title: string;

@@ -1,4 +1,4 @@
-import {icons, images} from '../../app/constants/index';
+import {icons} from '../../app/constants/index';
 import {SIZES, FONTS, COLORS} from '../theme/common.theme';
 import React, {useCallback} from 'react';
 import {

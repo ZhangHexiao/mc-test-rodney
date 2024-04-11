@@ -1,17 +1,8 @@
 import React from 'react';
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  ImageSourcePropType,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
-import TransactionItem from './transaction.item.component';
-import {icons, images} from '../../app/constants/index';
+import {View, StyleSheet, ImageSourcePropType, Image} from 'react-native';
+import {icons} from '../../app/constants/index';
 import {Button} from '../atoms/button.component';
-import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
+import {COLORS, SIZES} from '../../atomic/theme/common.theme';
 
 interface ProviderConnectionProps {
   logo: ImageSourcePropType; // Change 'any' to 'ImageSourcePropType' if using local images

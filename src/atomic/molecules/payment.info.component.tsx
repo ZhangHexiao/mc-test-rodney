@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {COLORS, FONTS, SIZES} from '../theme/common.theme';
+import {View, Text, StyleSheet} from 'react-native';
+import {COLORS, FONTS} from '../theme/common.theme';
 import {Button} from '../../atomic/atoms/button.component';
 import {formatToCurrency} from '../../app/util/utility';
 

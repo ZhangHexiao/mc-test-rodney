@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import ProgressBar from '../molecules/progress.bar';
 import PaymentInfo from '../molecules/payment.info.component';
-import RecentTransactions, {Transaction} from './transaction.list';
+import RecentTransactions from './transaction.list';
 import {CardInfo} from '../../app/scenes/tabs/home.tab.screen';
 
 const drawerFullHeight = SIZES.height * 0.7;

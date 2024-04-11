@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Text,
-  View,
   StyleSheet,
   TouchableOpacity,
   Image,
@@ -9,8 +8,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {COLORS, FONTS, SIZES} from '../theme/common.theme';
-import {icons} from '../../app/constants/index';
+import {COLORS, FONTS} from '../theme/common.theme';
 
 interface NavigationHeaderProps {
   title: string;

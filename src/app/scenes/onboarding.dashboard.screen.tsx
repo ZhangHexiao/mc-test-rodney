@@ -10,8 +10,8 @@ import {
 
 import {StackScreenProps} from '@react-navigation/stack';
 import {DashboardRoutes} from './dashboard.stack';
-import {COLORS, FONTS, SIZES} from '../../atomic/theme/common.theme';
-import {images, icons} from '../constants/index';
+import {COLORS, FONTS} from '../../atomic/theme/common.theme';
+import {images} from '../constants/index';
 import {Button} from '../../atomic/atoms/button.component';
 import ConnectSuccessModal from '../../atomic/organisms/connect.success.modal';
 import ConnectProviderModal, {
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    ...FONTS.H6,
+    ...FONTS.P1,
     textAlign: 'center',
     marginHorizontal: 37,
     fontWeight: '600',
